@@ -87,7 +87,7 @@ import { RouterOutlet } from '@angular/router';
     <div>Dashboard</div>
     <div>Dashboard</div>
     `,
-    imports: [RouterOutlet]
+    imports: []
 })
 export class DashboardComponent implements OnInit {
   constructor() {}

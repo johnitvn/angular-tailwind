@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { SidebarSubmenuComponent } from '../sidebar-submenu/sidebar-submenu.component';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { NgFor, NgClass, NgTemplateOutlet, NgIf, CommonModule } from '@angular/common';
-import { SubMenuItem } from 'src/app/core/menu.model';
-import { MenuService } from 'src/app/core/menu.service';
+import { RouterLink} from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { TuiIcon } from '@taiga-ui/core';
+import { SubMenuItem } from 'src/app/modules/models/menu.model';
+import { SidebarService } from 'src/app/modules/services/menu.service';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -19,7 +19,7 @@ import { TuiIcon } from '@taiga-ui/core';
   ]
 })
 export class SidebarMenuComponent implements OnInit {
-  constructor(public menuService: MenuService) { }
+  constructor(public menuService: SidebarService) { }
 
   public toggleMenu(subMenu: SubMenuItem) {
     this.menuService.toggleMenu(subMenu);

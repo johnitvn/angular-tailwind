@@ -1,22 +1,18 @@
 import { Injectable, OnDestroy, signal } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Menu } from 'src/app/core/menu';
-import { MenuItem, SubMenuItem } from 'src/app/core/menu.model';
-
+import { MenuItem, SubMenuItem } from '../models/menu.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MenuService implements OnDestroy {
+export class SidebarService implements OnDestroy {
   private _showSidebar = signal(true);
   private _mobileSidebar = signal(false);
   private _pagesMenu = signal<MenuItem[]>([]);
   private _subscription = new Subscription();
 
-  constructor(private router: Router) {
-    /** Set dynamic menu */
-    this._pagesMenu.set(Menu.pages);
+  constructor(private router: Router) {  
 
     let sub = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -41,6 +37,10 @@ export class MenuService implements OnDestroy {
 
   get pagesMenu() {
     return this._pagesMenu();
+  }
+
+  set pagesMenu(menus: MenuItem[]) {
+    this._pagesMenu.set(menus);
   }
 
   get showSideBar() {

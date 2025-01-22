@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { SidebarMenuComponent } from './sidebar-menu/sidebar-menu.component';
-import { NgClass, NgIf } from '@angular/common';
-import { MenuService } from 'src/app/core/menu.service';
+import { SidebarService } from 'src/app/modules/services/menu.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],
-    imports: [NgClass, NgIf, SidebarMenuComponent, RouterLink]
+    imports: [CommonModule, SidebarMenuComponent]
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(public menuService: MenuService) {}
+  constructor(public menuService: SidebarService) {}
 
   ngOnInit(): void {}
 

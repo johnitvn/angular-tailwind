@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RouterLinkActive, RouterLink, RouterModule } from '@angular/router';
-import { CommonModule, NgClass, NgFor, NgTemplateOutlet } from '@angular/common';
-import { SubMenuItem } from 'src/app/core/menu.model';
-import { MenuService } from 'src/app/core/menu.service';
+import { RouterLink, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { TuiIcon } from '@taiga-ui/core';
+import { SubMenuItem } from 'src/app/modules/models/menu.model';
+import { SidebarService } from 'src/app/modules/services/menu.service';
 
 @Component({
     selector: 'app-sidebar-submenu',
@@ -19,7 +19,7 @@ import { TuiIcon } from '@taiga-ui/core';
 export class SidebarSubmenuComponent implements OnInit {
   @Input() public submenu = <SubMenuItem>{};
 
-  constructor(public menuService: MenuService) {}
+  constructor(public menuService: SidebarService) {}
 
   ngOnInit(): void {}
 
