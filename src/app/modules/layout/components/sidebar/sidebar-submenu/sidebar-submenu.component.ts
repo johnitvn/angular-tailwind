@@ -1,21 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AngularSvgIconModule } from 'angular-svg-icon';
-import { RouterLinkActive, RouterLink } from '@angular/router';
-import { NgClass, NgFor, NgTemplateOutlet } from '@angular/common';
+import { RouterLinkActive, RouterLink, RouterModule } from '@angular/router';
+import { CommonModule, NgClass, NgFor, NgTemplateOutlet } from '@angular/common';
 import { SubMenuItem } from 'src/app/core/menu.model';
 import { MenuService } from 'src/app/core/menu.service';
+import { TuiIcon } from '@taiga-ui/core';
 
 @Component({
     selector: 'app-sidebar-submenu',
     templateUrl: './sidebar-submenu.component.html',
     styleUrls: ['./sidebar-submenu.component.scss'],
     imports: [
-        NgClass,
-        NgFor,
-        NgTemplateOutlet,
-        RouterLinkActive,
+        CommonModule,
+        RouterModule,
         RouterLink,
-        AngularSvgIconModule,
+        TuiIcon
     ]
 })
 export class SidebarSubmenuComponent implements OnInit {

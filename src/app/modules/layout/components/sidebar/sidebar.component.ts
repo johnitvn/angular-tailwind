@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SidebarMenuComponent } from './sidebar-menu/sidebar-menu.component';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import { NgClass, NgIf } from '@angular/common';
 import { MenuService } from 'src/app/core/menu.service';
 
@@ -9,7 +8,7 @@ import { MenuService } from 'src/app/core/menu.service';
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],
-    imports: [NgClass, NgIf, AngularSvgIconModule, SidebarMenuComponent, RouterLink]
+    imports: [NgClass, NgIf, SidebarMenuComponent, RouterLink]
 })
 export class SidebarComponent implements OnInit {
 

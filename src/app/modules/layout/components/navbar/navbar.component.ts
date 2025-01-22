@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import { MenuService } from 'src/app/core/menu.service';
 
 @Component({
@@ -7,7 +6,6 @@ import { MenuService } from 'src/app/core/menu.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   imports: [
-    AngularSvgIconModule,
   ]
 })
 export class NavbarComponent implements OnInit {

@@ -4,11 +4,9 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { NG_EVENT_PLUGINS } from '@taiga-ui/event-plugins';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    importProvidersFrom(AngularSvgIconModule.forRoot()),
     provideAnimations(),
     provideHttpClient(withFetch()),
     provideZoneChangeDetection({ eventCoalescing: true }),
