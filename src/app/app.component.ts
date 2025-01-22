@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NgClass } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import {TuiRoot} from '@taiga-ui/core';
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    imports: [NgClass, RouterOutlet]
+    imports: [CommonModule, RouterModule, TuiRoot]
 })
 export class AppComponent {
   title = 'Angular Tailwind';
