@@ -9,7 +9,6 @@ import { MenuService } from 'src/app/core/menu.service';
     selector: 'app-sidebar-submenu',
     templateUrl: './sidebar-submenu.component.html',
     styleUrls: ['./sidebar-submenu.component.scss'],
-    standalone: true,
     imports: [
         NgClass,
         NgFor,
@@ -17,7 +16,7 @@ import { MenuService } from 'src/app/core/menu.service';
         RouterLinkActive,
         RouterLink,
         AngularSvgIconModule,
-    ],
+    ]
 })
 export class SidebarSubmenuComponent implements OnInit {
   @Input() public submenu = <SubMenuItem>{};

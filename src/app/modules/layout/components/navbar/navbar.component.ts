@@ -9,13 +9,12 @@ import { MenuService } from 'src/app/core/menu.service';
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
-    standalone: true,
     imports: [
         AngularSvgIconModule,
         NavbarMenuComponent,
         ProfileMenuComponent,
         NavbarMobileComponent,
-    ],
+    ]
 })
 export class NavbarComponent implements OnInit {
   constructor(private menuService: MenuService) {}

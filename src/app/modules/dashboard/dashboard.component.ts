@@ -87,8 +87,7 @@ import { RouterOutlet } from '@angular/router';
     <div>Dashboard</div>
     <div>Dashboard</div>
     `,
-    standalone: true,
-    imports: [RouterOutlet],
+    imports: [RouterOutlet]
 })
 export class DashboardComponent implements OnInit {
   constructor() {}

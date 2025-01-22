@@ -4,11 +4,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @Component({
-  selector: 'app-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss'],
-  standalone: true,
-  imports: [SidebarComponent, NavbarComponent, RouterOutlet],
+    selector: 'app-layout',
+    templateUrl: './layout.component.html',
+    styleUrls: ['./layout.component.scss'],
+    imports: [SidebarComponent, NavbarComponent, RouterOutlet]
 })
 export class LayoutComponent implements OnInit {
   private mainContent: HTMLElement | null = null;
