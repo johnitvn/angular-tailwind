@@ -1,25 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarMobileComponent } from './navbar-mobile/navbar-mobilecomponent';
-import { NavbarMenuComponent } from './navbar-menu/navbar-menu.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { MenuService } from 'src/app/core/menu.service';
 
 @Component({
-    selector: 'app-navbar',
-    templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss'],
-    imports: [
-        AngularSvgIconModule,
-        NavbarMenuComponent,
-        NavbarMobileComponent,
-    ]
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
+  imports: [
+    AngularSvgIconModule,
+  ]
 })
 export class NavbarComponent implements OnInit {
-  constructor(private menuService: MenuService) {}
+  constructor(private menuService: MenuService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  public toggleMobileMenu(): void {
-    this.menuService.showMobileMenu = true;
-  }
+
 }
