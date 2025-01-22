@@ -16,4 +16,9 @@ export class NavbarComponent implements OnInit {
   public toggleSidebar() {
     this.menuService.toggleSidebar();
   }
+
+  public toggleMobileSidebar() {
+    this.menuService.toggleMobileSidebar();
+
+  }
 }

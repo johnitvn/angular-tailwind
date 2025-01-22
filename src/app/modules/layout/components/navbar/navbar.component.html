@@ -5,11 +5,16 @@
     <div class="flex items-center justify-between py-3.5 md:justify-start">
       <button (click)="toggleSidebar()">
         SIDEBAR
-      </button>      
+      </button>     
+      
       <!-- Logo -->
-      <div class="flex items-center justify-start sm:order-2 md:mr-10">
+      <div class="flex items-center justify-start md:mr-10">
         <b class="hidden pl-3 text-sm font-bold text-foreground sm:block"> Angular Tailwind </b>
       </div>
+
+      <button (click)="toggleMobileSidebar()">
+        Mobile
+      </button>    
     </div>
   </div>
 </div>
