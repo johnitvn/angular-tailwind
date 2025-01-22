@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarMobileComponent } from './navbar-mobile/navbar-mobilecomponent';
-import { ProfileMenuComponent } from './profile-menu/profile-menu.component';
 import { NavbarMenuComponent } from './navbar-menu/navbar-menu.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { MenuService } from 'src/app/core/menu.service';
@@ -12,7 +11,6 @@ import { MenuService } from 'src/app/core/menu.service';
     imports: [
         AngularSvgIconModule,
         NavbarMenuComponent,
-        ProfileMenuComponent,
         NavbarMobileComponent,
     ]
 })
