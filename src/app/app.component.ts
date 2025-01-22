@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgClass } from '@angular/common';
-import { ThemeService } from './core/theme.service';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -10,6 +9,4 @@ import { ThemeService } from './core/theme.service';
 })
 export class AppComponent {
   title = 'Angular Tailwind';
-
-  constructor(public themeService: ThemeService) {}
 }
