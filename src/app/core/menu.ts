@@ -11,8 +11,15 @@ export class Menu {
           label: 'Dashboard',
           route: '/dashboard',
           children: [
-            { label: 'Nfts', route: '/dashboard/nfts' },
-            // { label: 'Podcast', route: '/dashboard/podcast' },
+            {
+              label:
+                'Level 1',
+              route: '/dashboard/level1',
+              children: [
+                { label: 'Level 2', route: '/dashboard/level1/level2' },
+              ],
+            },
+
           ],
         },
         {
@@ -20,7 +27,24 @@ export class Menu {
           label: 'Auth',
           route: '/auth',
           children: [
-            { label: 'Sign up', route: '/auth/sign-up' },
+            {
+              label: 'Sign up', route: '/auth/sign-up',
+              children: [
+                {
+                  label: 'Two Steps', route: '/auth/two-steps', children: [
+                    { label: 'Sign up', route: '/auth/sign-up' },
+                    { label: 'Sign in', route: '/auth/sign-in' },
+                    { label: 'Forgot Password', route: '/auth/forgot-password' },
+                    { label: 'New Password', route: '/auth/new-password' },
+                    { label: 'Two Steps', route: '/auth/two-steps' },
+                  ],
+                },
+                { label: 'Sign up', route: '/auth/sign-up' },
+                { label: 'Sign in', route: '/auth/sign-in' },
+                { label: 'Forgot Password', route: '/auth/forgot-password' },
+                { label: 'New Password', route: '/auth/new-password' },
+              ],
+            },
             { label: 'Sign in', route: '/auth/sign-in' },
             { label: 'Forgot Password', route: '/auth/forgot-password' },
             { label: 'New Password', route: '/auth/new-password' },

@@ -5,10 +5,15 @@ import { LayoutComponent } from './layout.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: '/dashboard/level1/level2'
+  },
+  {
+    path: '',
     component: LayoutComponent,
     children: [
      {
-        path: '',
+        path: 'dashboard/level1/level2',
         loadComponent: () => import('../dashboard/dashboard.component').then((m) => m.DashboardComponent),
      }
     ]
