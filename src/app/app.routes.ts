@@ -15,6 +15,14 @@ export const appRoutes: Routes = [
       {
         path: 'dashboard/level1/level2',
         loadComponent: () => import('./modules/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+      },
+      {
+        path: 'auth/two-steps',
+        loadComponent: () => import('./modules/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+      },
+      {
+        path: 'auth/sign-in',
+        loadComponent: () => import('./modules/dashboard/dashboard.component').then((m) => m.DashboardComponent),
       }
     ]
   },
