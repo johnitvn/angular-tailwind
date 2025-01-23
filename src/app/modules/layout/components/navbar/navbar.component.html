@@ -1,20 +1,12 @@
-<div class="relative bg-background">
-  <div class="mx-auto px-5">
-
-    
-    <div class="flex items-center justify-between py-3.5 md:justify-start">
-      <button (click)="toggleSidebar()">
-        SIDEBAR
-      </button>     
-      
-      <!-- Logo -->
-      <div class="flex items-center justify-start md:mr-10">
-        <b class="hidden pl-3 text-sm font-bold text-foreground sm:block"> Angular Tailwind </b>
-      </div>
-
-      <button (click)="toggleMobileSidebar()">
-        Mobile
-      </button>    
+<div class="inset-x-0 inset-y-0 transition-all duration-750 backdrop-blur-[0px]" [ngClass]="{'!fixed lg:!hidden backdrop-blur-[2px]': sidebarService.mobileSidebar}" (click)="toggleMobileSidebar()"></div>
+<div class="inset-x-0 inset-y-0 transition-all duration-750 bg-black opacity-0" [ngClass]="{'!fixed lg:!hidden opacity-20': sidebarService.mobileSidebar}" (click)="toggleMobileSidebar()"></div>
+<div class="flex h-14 items-center justify-between bg-background px-4 md:justify-start">
+  <div class="flex items-center">
+    <button tuiIconButton appearance="flat" size="s" class="!hidden lg:!flex" iconStart="@tui.align-justify" (click)="toggleSidebar()" ></button>
+    <button tuiIconButton appearance="flat" size="s" class="!flex lg:!hidden" iconStart="@tui.align-justify" (click)="toggleMobileSidebar()">Mobile</button>
+    <div class="flex items-center justify-start md:mr-10">
+      <b class="hidden pl-3 text-sm font-bold text-foreground sm:block"> Angular Tailwind </b>
     </div>
   </div>
 </div>
+

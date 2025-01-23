@@ -1,24 +1,25 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { TuiButton, TuiIcon } from '@taiga-ui/core';
 import { SidebarService } from 'src/app/modules/services/menu.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  imports: [
-  ]
+  imports: [CommonModule, TuiButton, TuiIcon]
 })
 export class NavbarComponent implements OnInit {
-  constructor(private menuService: SidebarService) { }
+  constructor(public sidebarService: SidebarService) { }
 
   ngOnInit(): void { }
 
   public toggleSidebar() {
-    this.menuService.toggleSidebar();
+    this.sidebarService.toggleSidebar();
   }
 
   public toggleMobileSidebar() {
-    this.menuService.toggleMobileSidebar();
+    this.sidebarService.toggleMobileSidebar();
 
   }
 }
