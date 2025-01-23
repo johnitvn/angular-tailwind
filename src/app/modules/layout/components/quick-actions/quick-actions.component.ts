@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { TuiButton, TuiDropdown, TuiFallbackSrcPipe } from '@taiga-ui/core';
 import { TuiAvatar, TuiBadgedContent, TuiBadgeNotification } from '@taiga-ui/kit';
-import { SidebarService } from 'src/app/modules/services/menu.service';
+import { SidebarService } from '../../services/menu.service';
 
 @Component({
   selector: 'app-quick-actions',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarMenuComponent } from './sidebar-menu/sidebar-menu.component';
-import { SidebarService } from 'src/app/modules/services/menu.service';
 import { CommonModule } from '@angular/common';
 import { QuickActionsComponent } from '../quick-actions/quick-actions.component';
+import { SidebarService } from '../../services/menu.service';
 
 @Component({
     selector: 'app-sidebar',

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {TuiRoot} from '@taiga-ui/core';
-import { SidebarService } from './modules/services/menu.service';
-import { MenuItem } from './modules/models/menu.model';
+import { MenuItem } from './modules/layout/models/menu.model';
+import { SidebarService } from './modules/layout/services/menu.service';
 
 
 const pages: MenuItem[] = [

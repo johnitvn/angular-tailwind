@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TuiIcon } from '@taiga-ui/core';
-import { SubMenuItem } from 'src/app/modules/models/menu.model';
-import { SidebarService } from 'src/app/modules/services/menu.service';
+import { SubMenuItem } from 'src/app/modules/layout/models/menu.model';
+import { SidebarService } from '../../../services/menu.service';
 
 @Component({
     selector: 'app-sidebar-submenu',
