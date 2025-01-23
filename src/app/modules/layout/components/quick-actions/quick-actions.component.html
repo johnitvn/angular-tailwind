@@ -1,0 +1,57 @@
+  <div class="flex w-full items-center justify-center md:order-2 pb-6 md:pb-0">          
+    <tui-avatar [src]="'https://avatars.githubusercontent.com/u/11832552' | tuiFallbackSrc: '@tui.user' | async"  [size]="mode==='navibar'?'m':'l'"
+    (click)="toogleUserMenu()"
+    [tuiDropdown]="userMenu"  [tuiDropdownManual]="userMenuOpened"  />     
+
+  </div>  
+
+ <div class="flex w-full items-center justify-center space-x-2">
+    
+  <div>
+    <tui-badged-content>
+      <tui-badge-notification size="s" tuiSlot="top">8</tui-badge-notification>
+      <button tuiIconButton class="!rounded-full" appearance="flat" size="m"  iconStart="@tui.bell"
+        (click)="toogleNotificatonMenu()"
+        [tuiDropdown]="notification" [tuiDropdownManual]="notificationMenuOpened" 
+        ></button>
+    </tui-badged-content>  
+  </div>
+
+
+  <div>
+    <button tuiIconButton class="!rounded-full" appearance="flat" size="m"  iconStart="@tui.settings"
+      (click)="toogleNotificatonMenu()"
+      [tuiDropdown]="settings" [tuiDropdownManual]="notificationMenuOpened" 
+    ></button>
+    
+  </div>
+
+  <div>
+    <button tuiIconButton class="!rounded-full" appearance="flat" size="m"  iconStart="@tui.grip"
+        (click)="toogleNotificatonMenu()"
+        [tuiDropdown]="apps" [tuiDropdownManual]="notificationMenuOpened" 
+        ></button>   
+  </div>
+
+  <div>
+    <button tuiIconButton class="!rounded-full md:!hidden" appearance="flat" size="m"  iconStart="@tui.log-out"></button>    
+  </div>
+
+ </div>
+
+ <ng-template #notification>
+  <div class="dropdown">But there is nothing to choose...</div>
+</ng-template> 
+
+<ng-template #settings>
+  <div class="dropdown">But there is nothing to choose...</div>
+</ng-template> 
+
+ <ng-template #apps>
+  <div class="dropdown">But there is nothing to choose...</div>
+</ng-template> 
+
+
+ <ng-template #userMenu>
+  <div class="dropdown">But there is nothing to choose...</div>
+</ng-template>    

@@ -1,19 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { TuiButton, TuiDropdown, TuiFallbackSrcPipe, TuiIcon } from '@taiga-ui/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { TuiButton, TuiDropdown, TuiFallbackSrcPipe } from '@taiga-ui/core';
 import { TuiAvatar, TuiBadgedContent, TuiBadgeNotification } from '@taiga-ui/kit';
 import { SidebarService } from 'src/app/modules/services/menu.service';
-import { QuickActionsComponent } from '../quick-actions/quick-actions.component';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
+  selector: 'app-quick-actions',
+  templateUrl: './quick-actions.component.html',
+  styleUrls: ['./quick-actions.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TuiButton, TuiIcon, TuiAvatar, TuiFallbackSrcPipe, TuiBadgedContent, TuiBadgeNotification, TuiDropdown, QuickActionsComponent]
+  imports: [CommonModule, TuiButton, TuiAvatar, TuiFallbackSrcPipe, TuiBadgedContent, TuiBadgeNotification, TuiDropdown],
+  host: {
+    'class': 'md:space-x-2 items-center'
+  }
 })
-export class NavbarComponent implements OnInit {
+export class QuickActionsComponent implements OnInit {
 
+  @Input() mode!: 'sidebar'|'navibar';  
   protected userMenuOpened = false;
   protected notificationMenuOpened = false;
 

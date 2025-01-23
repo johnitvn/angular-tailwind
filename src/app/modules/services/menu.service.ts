@@ -23,7 +23,10 @@ export class SidebarService implements OnDestroy {
             const active = this.isActive(subMenu.route);
             subMenu.expanded = active;
             subMenu.active = active;
-            if (active) activeGroup = true;
+            if (active) {
+              activeGroup = true;
+              this.mobileSidebar = false;
+            }
             if (subMenu.children) {
               this.expand(subMenu.children);
             }
