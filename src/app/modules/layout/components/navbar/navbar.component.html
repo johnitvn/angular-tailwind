@@ -1,13 +1,16 @@
-<div class="flex h-14 items-center bg-background px-4">
-  <div class="flex items-center w-52 xl:w-64">
-    <button tuiIconButton appearance="flat" size="s" class="!hidden lg:!flex !rounded-full" iconStart="@tui.align-justify" (click)="toggleSidebar()" ></button>
-    <button tuiIconButton appearance="flat" size="s" class="!flex lg:!hidden !rounded-full" iconStart="@tui.align-justify" (click)="toggleMobileSidebar()">Mobile</button>
-    <div class="hidden lg:flex items-center">
-      <b class="pl-3 text-sm font-bold text-foreground"> Angular Tailwind </b>
+<div class="flex h-14 items-center bg-background">
+  <div class="flex items-center lg:w-64">
+    <div class="flex w-[68px] justify-center">
+      <button tuiIconButton appearance="flat" size="s" class="!hidden lg:!flex !rounded-full" iconStart="@tui.align-justify" (click)="toggleSidebar()" ></button>
+      <button tuiIconButton appearance="flat" size="s" class="!flex lg:!hidden !rounded-full" iconStart="@tui.align-justify" (click)="toggleMobileSidebar()">Mobile</button>
+    </div>
+    <div class="hidden lg:flex flex-1 items-center">
+      <b class="text-sm font-bold text-foreground"> Angular Tailwind </b>
     </div>
   </div>
   <div class="flex-1 flex justify-between">
-    <div class="flex-1">     
+    <div class="flex-1 flex items-center pr-16">     
+      <input class="w-full border border-gray-300 rounded-full focus:!border-blue-500 h-8" type="text" />
     </div>
     <app-quick-actions class="hidden md:flex" mode="navibar"></app-quick-actions>
   </div>
