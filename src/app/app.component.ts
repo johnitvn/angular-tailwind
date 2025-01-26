@@ -58,11 +58,11 @@ const pages: MenuItem[] = [
       },
       {
         icon: 'assets/icons/heroicons/outline/exclamation-triangle.svg',
-        label: 'Errors',
-        route: '/errors',
+        label: 'Users',
+        route: '/users',
         children: [
-          { label: '404', route: '/errors/404' },
-          { label: '500', route: '/errors/500' },
+          { label: 'User listing', route: '/users' },
+          { label: 'Create new user', route: '/users/create' },
         ],
       },
       {
