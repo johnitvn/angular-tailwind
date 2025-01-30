@@ -21,9 +21,6 @@ import { LayoutService } from '../../../services/layout.service';
 export class SidebarMenuComponent implements OnInit {
   constructor(public layoutService: LayoutService) { }
 
-  public toggleMenu(subMenu: SubMenuItem) {
-    this.layoutService.toggleMenu(subMenu);
-  }
 
   ngOnInit(): void { }
 }

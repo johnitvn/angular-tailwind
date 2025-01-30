@@ -2,7 +2,7 @@
 
 module.exports = {
   content: ['./src/**/*.{html,ts}'],
-  darkMode: 'class',
+  darkMode: '[tuiTheme="dark"]',
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),

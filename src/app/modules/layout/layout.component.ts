@@ -7,9 +7,29 @@ import { PageTitleComponent } from './components/page-title/page-title.component
 
 @Component({
   selector: 'app-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss'],
   imports: [TuiRoot, RouterOutlet, SidebarComponent, NavbarComponent,  PageTitleComponent],
+  template: `
+  <tui-root tuiTheme="light" class="flex flex-col h-screen w-full overflow-hidden bg-[]">
+    <app-navbar></app-navbar>
+    <div class="flex-1 flex grow content-start overflow-hidden h-full">
+      <app-sidebar></app-sidebar>
+      <div
+        id="main-content"
+        class="scrollbar-thumb-rounded scrollbar-track-rounded grow overflow-auto scrollbar-thin scrollbar-track-transparent">
+        <div class="mx-auto px-4 sm:px-8">
+          <app-page-title />
+          <router-outlet></router-outlet>
+        </div>
+      </div>  
+    </div>
+
+  <ng-container ngProjectAs="tuiOverContent" />
+  <ng-container ngProjectAs="tuiOverDialogs" />
+  <ng-container ngProjectAs="tuiOverAlerts" />
+  <ng-container ngProjectAs="tuiOverDropdowns" />
+  <ng-container ngProjectAs="tuiOverHints" />
+  </tui-root>
+`
 })
 export class LayoutComponent {
  
