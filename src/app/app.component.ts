@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {TuiRoot} from '@taiga-ui/core';
 import { MenuItem } from './modules/layout/models/menu.model';
 import { SidebarService } from './modules/layout/services/menu.service';
-
 
 const pages: MenuItem[] = [
   {
@@ -15,29 +13,30 @@ const pages: MenuItem[] = [
         icon: 'assets/icons/heroicons/outline/chart-pie.svg',
         label: 'Dashboard',
         route: '/dashboard',
+      },
+      {
+        icon: 'assets/icons/heroicons/outline/exclamation-triangle.svg',
+        label: 'Users',
+        route: '/users',
         children: [
-          {
-            label:
-              'Level 1',
-            route: '/dashboard/level1',
-            children: [
-              { label: 'Level 2', route: '/dashboard/level1/level2' },
-            ],
-          },
-
+          { label: 'User listing', route: '/users' },
+          { label: 'Create new user', route: '/users/create' },
         ],
       },
       {
         icon: 'assets/icons/heroicons/outline/lock-closed.svg',
-        label: 'Auth',
-        route: '/auth',
+        label: 'Mutil levels',
+        route: '/level1',
         children: [
           {
-            label: 'Sign up', route: '/auth/sign-up',
+            label: 'Child Level',
+            route: '/level1',
             children: [
               {
-                label: 'Two Steps', route: '/auth/two-steps', children: [
-                  { label: 'Sign up', route: '/auth/sign-up' },
+                label: 'Child Level',
+                route: '/level1/level2',
+                children: [
+                  { label: 'Child Level', route: '/level1/level2/level3' },
                   { label: 'Sign in', route: '/auth/sign-in' },
                   { label: 'Forgot Password', route: '/auth/forgot-password' },
                   { label: 'New Password', route: '/auth/new-password' },
@@ -55,21 +54,6 @@ const pages: MenuItem[] = [
           { label: 'New Password', route: '/auth/new-password' },
           { label: 'Two Steps', route: '/auth/two-steps' },
         ],
-      },
-      {
-        icon: 'assets/icons/heroicons/outline/exclamation-triangle.svg',
-        label: 'Users',
-        route: '/users',
-        children: [
-          { label: 'User listing', route: '/users' },
-          { label: 'Create new user', route: '/users/create' },
-        ],
-      },
-      {
-        icon: 'assets/icons/heroicons/outline/cube.svg',
-        label: 'Components',
-        route: '/components',
-        children: [{ label: 'Table', route: '/components/table' }],
       },
     ],
   },
@@ -123,16 +107,13 @@ const pages: MenuItem[] = [
 ];
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    imports: [CommonModule, RouterModule, TuiRoot]
+  selector: 'app-root',
+  imports: [CommonModule, RouterModule],
+  template: '<router-outlet></router-outlet>',
 })
 export class AppComponent {
-
- constructor(private sidebarService: SidebarService){
+  constructor(private sidebarService: SidebarService) {
     /** Set dynamic menu */
     this.sidebarService.pagesMenu = pages;
- }
-  
+  }
 }

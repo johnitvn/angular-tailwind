@@ -21,6 +21,18 @@ export const appRoutes: Routes = [
         path: 'users/update/:id',
         loadComponent: () => import('./modules/pages/update-user.component').then((m) => m.UpdateUserComponent),
       },
+      {
+        path: 'level1',
+        loadComponent: () => import('./modules/pages/dashboard.component').then((m) => m.DashboardComponent),
+      },
+      {
+        path: 'level1/level2',
+        loadComponent: () => import('./modules/pages/dashboard.component').then((m) => m.DashboardComponent),
+      },
+      {
+        path: 'level1/level2/level3',
+        loadComponent: () => import('./modules/pages/dashboard.component').then((m) => m.DashboardComponent),
+      },      
     ],
   },
 ];

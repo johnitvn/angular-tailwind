@@ -20,6 +20,7 @@ export class SidebarService implements OnDestroy {
       console.log("On NavigationEnd");
       this.expandBaseOnActiveRoute();
       this._information.set(null);
+      console.log(this._pagesMenu());
     });
     this._subscription.add(sub);
   }
