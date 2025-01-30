@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarService } from '../layout/services/menu.service';
+import { LayoutService } from '../layout/services/layout.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   imports: [],
 })
 export class UsersComponent implements OnInit {
-  constructor(private layoutService: SidebarService, private router: Router) {}
+  constructor(private layoutService: LayoutService, private router: Router) {}
 
   ngOnInit(): void {
     this.layoutService.pageInformation = {

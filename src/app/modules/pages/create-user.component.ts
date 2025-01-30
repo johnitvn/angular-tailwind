@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarService } from '../layout/services/menu.service';
+import { LayoutService } from '../layout/services/layout.service';
 
 @Component({
     selector: 'app-create-user',
@@ -7,7 +7,7 @@ import { SidebarService } from '../layout/services/menu.service';
     imports: []
 })
 export class CreateUserComponent implements OnInit {
-  constructor(private layoutService: SidebarService) {}
+  constructor(private layoutService: LayoutService) {}
 
   ngOnInit(): void {
     this.layoutService.pageInformation = {

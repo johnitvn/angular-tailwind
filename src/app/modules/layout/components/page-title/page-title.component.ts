@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SidebarService } from '../../services/menu.service';
+import { LayoutService } from '../../services/layout.service';
 import { TuiButton, TuiIcon } from '@taiga-ui/core';
 
 @Component({
@@ -22,16 +22,13 @@ import { TuiButton, TuiIcon } from '@taiga-ui/core';
     </div>
     <div class="inline-flex gap-3" *ngIf="layoutService.pageInformation?.actions">
         <button
-          tuiButton
           *ngFor="let action of layoutService.pageInformation?.actions"
-          [iconStart]="action.icon??''"
-          size="m"
-          (click)="action.click && action.click()">
+          tuiButton size="m" [iconStart]="action.icon??''" (click)="action.click && action.click()">
           {{ action.title }}
         </button>
       </div>
   `,
 })
 export class PageTitleComponent {
-  constructor(public layoutService: SidebarService) {}
+  constructor(public layoutService: LayoutService) {}
 }

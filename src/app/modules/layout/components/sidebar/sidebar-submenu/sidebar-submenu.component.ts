@@ -3,7 +3,7 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TuiIcon } from '@taiga-ui/core';
 import { SubMenuItem } from 'src/app/modules/layout/models/menu.model';
-import { SidebarService } from '../../../services/menu.service';
+import { LayoutService } from '../../../services/layout.service';
 
 @Component({
     selector: 'app-sidebar-submenu',
@@ -19,12 +19,12 @@ import { SidebarService } from '../../../services/menu.service';
 export class SidebarSubmenuComponent implements OnInit {
   @Input() public submenu = <SubMenuItem>{};
 
-  constructor(public menuService: SidebarService) {}
+  constructor(public layoutService: LayoutService) {}
 
   ngOnInit(): void {}
 
   public toggleMenu(menu: any) {
-    this.menuService.toggleSubMenu(menu);
+    this.layoutService.toggleSubMenu(menu);
   }
 
   private collapse(items: Array<any>) {

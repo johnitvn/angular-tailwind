@@ -14,6 +14,6 @@
     <app-quick-actions class="hidden md:flex" mode="navibar"></app-quick-actions>
   </div>
 </div>
-<div class="inset-x-0 inset-y-0 transition-all duration-750 backdrop-blur-[0px]" [ngClass]="{'!fixed lg:!hidden backdrop-blur-[2px]': sidebarService.mobileSidebar}" (click)="toggleMobileSidebar()"></div>
-<div class="inset-x-0 inset-y-0 transition-all duration-750 bg-black dark:bg-white opacity-0" [ngClass]="{'!fixed lg:!hidden opacity-20': sidebarService.mobileSidebar}" (click)="toggleMobileSidebar()"></div>
+<div class="inset-x-0 inset-y-0 transition-all duration-750 backdrop-blur-[0px]" [ngClass]="{'!fixed lg:!hidden backdrop-blur-[2px]': layoutService.mobileSidebar}" (click)="toggleMobileSidebar()"></div>
+<div class="inset-x-0 inset-y-0 transition-all duration-750 bg-black dark:bg-white opacity-0" [ngClass]="{'!fixed lg:!hidden opacity-20': layoutService.mobileSidebar}" (click)="toggleMobileSidebar()"></div>
 

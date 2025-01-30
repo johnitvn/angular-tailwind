@@ -6,7 +6,7 @@ import { MenuItem, PageInformation, SubMenuItem } from '../models/menu.model';
 @Injectable({
   providedIn: 'root',
 })
-export class SidebarService implements OnDestroy {
+export class LayoutService implements OnDestroy {
   private _showSidebar = signal(true);
   private _mobileSidebar = signal(false);
   private _information = signal<PageInformation | null>(null);
@@ -17,10 +17,12 @@ export class SidebarService implements OnDestroy {
     let sub = this.router.events
     .pipe(filter((event) => event instanceof NavigationEnd))
     .subscribe(() => {
-      console.log("On NavigationEnd");
       this.expandBaseOnActiveRoute();
       this._information.set(null);
-      console.log(this._pagesMenu());
+      const mainContent = document.getElementById('main-content');
+      if(mainContent){
+        mainContent.scrollTop = 0;
+      }        
     });
     this._subscription.add(sub);
   }

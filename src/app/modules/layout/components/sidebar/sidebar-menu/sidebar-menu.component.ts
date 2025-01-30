@@ -4,7 +4,7 @@ import { RouterLink} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TuiIcon } from '@taiga-ui/core';
 import { SubMenuItem } from 'src/app/modules/layout/models/menu.model';
-import { SidebarService } from '../../../services/menu.service';
+import { LayoutService } from '../../../services/layout.service';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -19,10 +19,10 @@ import { SidebarService } from '../../../services/menu.service';
   ]
 })
 export class SidebarMenuComponent implements OnInit {
-  constructor(public menuService: SidebarService) { }
+  constructor(public layoutService: LayoutService) { }
 
   public toggleMenu(subMenu: SubMenuItem) {
-    this.menuService.toggleMenu(subMenu);
+    this.layoutService.toggleMenu(subMenu);
   }
 
   ngOnInit(): void { }

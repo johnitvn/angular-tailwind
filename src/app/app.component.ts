@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MenuItem } from './modules/layout/models/menu.model';
-import { SidebarService } from './modules/layout/services/menu.service';
+import { LayoutService } from './modules/layout/services/layout.service';
 
 const pages: MenuItem[] = [
   {
@@ -112,7 +112,7 @@ const pages: MenuItem[] = [
   template: '<router-outlet></router-outlet>',
 })
 export class AppComponent {
-  constructor(private sidebarService: SidebarService) {
+  constructor(private sidebarService: LayoutService) {
     /** Set dynamic menu */
     this.sidebarService.pagesMenu = pages;
   }

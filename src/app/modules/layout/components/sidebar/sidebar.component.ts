@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SidebarMenuComponent } from './sidebar-menu/sidebar-menu.component';
 import { CommonModule } from '@angular/common';
 import { QuickActionsComponent } from '../quick-actions/quick-actions.component';
-import { SidebarService } from '../../services/menu.service';
+import { LayoutService } from '../../services/layout.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -12,11 +12,11 @@ import { SidebarService } from '../../services/menu.service';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(public menuService: SidebarService) {}
+  constructor(public layoutService: LayoutService) {}
 
   ngOnInit(): void {}
 
   public toggleSidebar() {
-    this.menuService.toggleSidebar();
+    this.layoutService.toggleSidebar();
   }
 }

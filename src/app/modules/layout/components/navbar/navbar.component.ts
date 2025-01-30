@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TuiButton, TuiDropdown } from '@taiga-ui/core';
 import { QuickActionsComponent } from '../quick-actions/quick-actions.component';
-import { SidebarService } from '../../services/menu.service';
+import { LayoutService } from '../../services/layout.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,16 +16,16 @@ export class NavbarComponent implements OnInit {
   protected userMenuOpened = false;
   protected notificationMenuOpened = false;
 
-  constructor(protected sidebarService: SidebarService) { }
+  constructor(protected layoutService: LayoutService) { }
 
   ngOnInit(): void { }
 
   protected toggleSidebar() {
-    this.sidebarService.toggleSidebar();
+    this.layoutService.toggleSidebar();
   }
 
   protected toggleMobileSidebar() {
-    this.sidebarService.toggleMobileSidebar();
+    this.layoutService.toggleMobileSidebar();
   }
 
   protected toogleNotificatonMenu(): void {

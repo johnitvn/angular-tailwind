@@ -1,8 +1,8 @@
 <nav
   [ngClass]="{
-    'w-64' : menuService.showSideBar,
-    'w-[68px]': !menuService.showSideBar,
-    '!translate-x-0 z-10': menuService.mobileSidebar
+    'w-64' : layoutService.showSideBar,
+    'w-[68px]': !layoutService.showSideBar,
+    '!translate-x-0 z-10': layoutService.mobileSidebar
   }"
   class="bg-[var(--tui-background-base)] lg:bg-[var(--tui-background-neutral-1)] scrollbar-thumb-rounded -translate-x-full top-0 fixed lg:relative lg:translate-x-0 scrollbar-track-rounded h-full flex-col justify-between overflow-auto transition-all duration-300 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-card lg:flex">
   <div class="px-2 md:px-3 lg:px-4">
