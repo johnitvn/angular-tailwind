@@ -2,9 +2,9 @@
   [ngClass]="{
     'w-64' : menuService.showSideBar,
     'w-[68px]': !menuService.showSideBar,
-    '!translate-x-0': menuService.mobileSidebar
+    '!translate-x-0 z-10': menuService.mobileSidebar
   }"
-  class="scrollbar-thumb-rounded -translate-x-full top-0 fixed lg:relative lg:translate-x-0 scrollbar-track-rounded h-full flex-col justify-between overflow-auto bg-[var(--tui-background-neutral-1)] transition-all duration-300 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-card lg:flex">
+  class="bg-[var(--tui-background-base)] lg:bg-[var(--tui-background-neutral-1)] scrollbar-thumb-rounded -translate-x-full top-0 fixed lg:relative lg:translate-x-0 scrollbar-track-rounded h-full flex-col justify-between overflow-auto transition-all duration-300 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-card lg:flex">
   <div class="px-2 md:px-3 lg:px-4">
     <app-quick-actions class="w-full md:hidden" mode="sidebar"></app-quick-actions>
     <app-sidebar-menu></app-sidebar-menu>

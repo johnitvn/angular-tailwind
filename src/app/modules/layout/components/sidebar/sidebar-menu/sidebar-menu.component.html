@@ -11,7 +11,7 @@
       <div (click)="toggleMenu(item)" class="group relative">
         <!-- Icon -->
         <div
-          [ngClass]="item.active ? 'text-[var(--tui-background-accent-1)]' : ''"
+          [ngClass]="item.active ? 'text-[var(--tui-text-action)]' : ''"
           class="pointer-events-none absolute m-2">
           <tui-icon icon="{{ item.icon }}" [ngClass]="'h-5 w-5'"> </tui-icon>
         </div>
@@ -28,7 +28,7 @@
             routerLink="{{ item.route }}"
             class="flex h-9 cursor-pointer items-center justify-start rounded hover:bg-[var(--tui-background-neutral-1-hover)]">
             <a
-              [ngClass]="item.active ? 'text-[var(--tui-background-accent-1)]' : ''"
+              [ngClass]="item.active ? 'text-[var(--tui-text-action)]' : ''"
               class="ml-10 truncate text-xs font-semibold tracking-wide focus:outline-none">
               {{ item.label }}
             </a>
@@ -39,7 +39,7 @@
         <ng-template #childMenu let-item="item">
           <div class="flex h-9 cursor-pointer items-center justify-start rounded hover:bg-[var(--tui-background-neutral-1-hover)]">
             <a
-              [ngClass]="item.active ? 'text-[var(--tui-background-accent-1)]' : ''"
+              [ngClass]="item.active ? 'text-[var(--tui-text-action)]' : ''"
               class="ml-10 truncate text-xs font-semibold tracking-wide focus:outline-none"
             >
               {{ item.label }}
