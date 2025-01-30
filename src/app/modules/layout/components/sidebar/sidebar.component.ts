@@ -7,26 +7,21 @@ import { clsx } from 'clsx';
 @Component({
   selector: 'app-sidebar',
   imports: [CommonModule, SidebarMenuComponent],
-  template: ` <app-sidebar-menu class="px-2 md:px-3 lg:px-4"></app-sidebar-menu> `,
+  template: `<app-sidebar-menu></app-sidebar-menu>`,
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent  {
   constructor(public layoutService: LayoutService) {}
-
-  ngOnInit(): void {}
-
-  // public toggleSidebar() {
-  //   this.layoutService.toggleSidebar();
-  // }
 
   @HostBinding('class') get classes() {
     return clsx(
       'scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-thumb-card scrollbar-thin scrollbar-track-transparent  overflow-auto',
       'transition-all duration-300',
+      'w-64 px-2 md:px-3 lg:px-4',
+      'bg-[var(--tui-background-base)] lg:bg-[var(--tui-background-neutral-1)]',
+      'fixed top-0 h-full -translate-x-full flex-col justify-between lg:relative lg:flex lg:translate-x-0',
       {
-      'w-64': true,
-      'z-10 !translate-x-0': this.layoutService.mobileSidebar,
-      'bg-[var(--tui-background-base)] lg:bg-[var(--tui-background-neutral-1)]  fixed top-0 h-full -translate-x-full flex-col justify-between lg:relative lg:flex lg:translate-x-0':
-        true,
-    });
+        'z-10 !translate-x-0': this.layoutService.mobileSidebar,      
+      }
+    );
   }
 }
