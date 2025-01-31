@@ -60,27 +60,27 @@ const LANGUAGES = [
       <tui-avatar [src]="'https://avatars.githubusercontent.com/u/11832552' | tuiFallbackSrc: '@tui.user' | async"  size="xl" /> 
       <div>
         <div class="text-3xl">Hi John Doe!</div>
-        <div class="text">john.itvn&#64;gmail.com</div>
+        <div class="pointer-events-none">john.itvn&#64;gmail.com</div>
       </div>
     </div>  
     
     
-    <div class="flex justify-between w-full border border-[var(--tui-background-neutral-1-hover)] rounded-full bg-[var(--tui-background-neutral-1)]">
-        <div class="flex-1 p-3.5 space-x-2 justify-center border-r border-[var(--tui-background-neutral-1-hover)] hover:bg-[var(--tui-background-neutral-1-hover)] rounded-s-full">
+    <div class="flex text-sm lg:text-base justify-between w-full border border-[var(--tui-background-neutral-1-hover)] rounded-full bg-[var(--tui-background-neutral-1)]">
+        <div class="flex flex-1 p-3.5 space-x-2 justify-center items-center border-r border-[var(--tui-background-neutral-1-hover)] hover:bg-[var(--tui-background-neutral-1-hover)] rounded-s-full">
           <tui-icon icon="@tui.user-pen" />
           <span>Your profile</span>        
         </div>
-        <div class="flex-1 p-3.5 space-x-2 justify-center hover:bg-[var(--tui-background-neutral-1-hover)] rounded-e-full">
+        <div class="flex flex-1 p-3.5 space-x-2 justify-center items-center hover:bg-[var(--tui-background-neutral-1-hover)] rounded-e-full">
           <tui-icon icon="@tui.log-out" />
           <span>Logout</span>        
         </div>
     </div>
 
     <tui-segmented size="l" [style.border-radius.rem]="10" class="flex justify-between" [activeItemIndex]="getCurrentColorModeIndex()">
-      <button type="button" class="text-sm text-center" (click)="onChangeColorMode('light')">Light</button>
-      <button type="button" class="text-sm text-center" (click)="onChangeColorMode('dark')" >Dark</button>
-      <button type="button" class="text-sm text-center" (click)="onChangeColorMode('monochrome')" >Monochrome</button>
-      <button type="button" class="text-sm text-center" (click)="onChangeColorMode('system')">System</button>
+      <button type="button" class="text-sm lg:text-base text-center" (click)="onChangeColorMode('light')">Light</button>
+      <button type="button" class="text-sm lg:text-base text-center" (click)="onChangeColorMode('dark')" >Dark</button>
+      <button type="button" class="text-sm lg:text-base text-center" (click)="onChangeColorMode('monochrome')" >Monochrome</button>
+      <button type="button" class="text-sm lg:text-base text-center" (click)="onChangeColorMode('system')">System</button>
     </tui-segmented>
 
     <tui-combo-box
