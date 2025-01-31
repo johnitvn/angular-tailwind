@@ -83,8 +83,12 @@ export class LayoutService implements OnDestroy {
     submenu.expanded = !submenu.expanded;
   }
 
-  public setColorMode(mode: 'dark' | 'light' | 'monochrome' | 'system') {
+  public set colorMode(mode: 'dark' | 'light' | 'monochrome' | 'system') {
     this._colorMode.set(mode);
+  }
+
+  public get colorMode() {
+    return this._colorMode();
   }
 
   public isDarkMode(){

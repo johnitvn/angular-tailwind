@@ -7,6 +7,7 @@ import { TuiActiveZone, TuiObscured } from '@taiga-ui/cdk';
 import { TuiDataListWrapper, TuiFilterByInputPipe, TuiStringifyContentPipe } from '@taiga-ui/kit';
 import { TuiComboBoxModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { TuiDropdownMobile } from '@taiga-ui/addon-mobile';
 
 const LANGUAGES = [
   { code: 'en', title: 'English' },
@@ -21,6 +22,7 @@ const LANGUAGES = [
     TuiIcon,
     TuiAvatar,
     TuiDropdown,
+    TuiDropdownMobile,
     TuiObscured,
     TuiActiveZone,
     TuiFallbackSrcPipe,
@@ -52,7 +54,7 @@ const LANGUAGES = [
    />    
 
 <ng-template #userMenu>
-  <div class="w-screen max-w-md bg-[var(--tui-background-neutral-1)] p-8 space-y-6">
+  <div class="w-full bg-[var(--tui-background-neutral-1)] p-8 space-y-6">
 
     <div class="flex items-center space-x-4">
       <tui-avatar [src]="'https://avatars.githubusercontent.com/u/11832552' | tuiFallbackSrc: '@tui.user' | async"  size="xl" /> 
@@ -63,27 +65,28 @@ const LANGUAGES = [
     </div>  
     
     
-    <div class="flex justify-between w-full border rounded-full bg-[var(--tui-background-base)]">
-        <div class="flex-1 p-4 space-x-2 justify-center border-r hover:bg-[var(--tui-background-neutral-1-hover)] rounded-s-full">
+    <div class="flex justify-between w-full border border-[var(--tui-background-neutral-1-hover)] rounded-full bg-[var(--tui-background-neutral-1)]">
+        <div class="flex-1 p-3.5 space-x-2 justify-center border-r border-[var(--tui-background-neutral-1-hover)] hover:bg-[var(--tui-background-neutral-1-hover)] rounded-s-full">
           <tui-icon icon="@tui.user-pen" />
           <span>Your profile</span>        
         </div>
-        <div class="flex-1 p-4 space-x-2 justify-center hover:bg-[var(--tui-background-neutral-1-hover)] rounded-e-full">
+        <div class="flex-1 p-3.5 space-x-2 justify-center hover:bg-[var(--tui-background-neutral-1-hover)] rounded-e-full">
           <tui-icon icon="@tui.log-out" />
           <span>Logout</span>        
         </div>
     </div>
 
-    <tui-segmented size="l" [style.border-radius.rem]="10" class="flex justify-between">
-      <button type="button" class="text-sm text-center" (click)="layoutService.setColorMode('light')">Light Mode</button>
-      <button type="button" class="text-sm text-center" (click)="layoutService.setColorMode('dark')">Dark Mode</button>
-      <button type="button" class="text-sm text-center" (click)="layoutService.setColorMode('monochrome')">Monochrome</button>
-      <button type="button" class="text-sm text-center" (click)="layoutService.setColorMode('system')">System</button>
+    <tui-segmented size="l" [style.border-radius.rem]="10" class="flex justify-between" [activeItemIndex]="getCurrentColorModeIndex()">
+      <button type="button" class="text-sm text-center" (click)="onChangeColorMode('light')">Light</button>
+      <button type="button" class="text-sm text-center" (click)="onChangeColorMode('dark')" >Dark</button>
+      <button type="button" class="text-sm text-center" (click)="onChangeColorMode('monochrome')" >Monochrome</button>
+      <button type="button" class="text-sm text-center" (click)="onChangeColorMode('system')">System</button>
     </tui-segmented>
 
-    <tui-combo-box
-      class="w-full"
+    <!-- <tui-combo-box
+      class="w-full !rounded-full"
       tuiTextfieldSize="l"
+      tuiDropdownMobile
       [tuiTextfieldLabelOutside]="true"
       [stringify]="stringify"
       [formControl]="control"> 
@@ -91,7 +94,7 @@ const LANGUAGES = [
           *tuiDataList
           [itemContent]="stringify | tuiStringifyContent"
           [items]="items | tuiFilterByInput"/>
-    </tui-combo-box>
+    </tui-combo-box> -->
 
  
 
@@ -119,6 +122,24 @@ export class UserMenuComponent {
 
   protected onActiveZone(active: boolean): void {
     this.open = active && this.open;
+  }
+
+  protected onChangeColorMode(mode: 'dark' | 'light' | 'monochrome' | 'system') {
+    this.layoutService.colorMode = mode;
+    this.open = false;
+  }
+
+  protected getCurrentColorModeIndex() {
+    switch (this.layoutService.colorMode) {
+      case 'light':
+        return 0;
+      case 'dark':
+        return 1;
+      case 'monochrome':
+        return 2;
+      default:
+        return 3;
+    }
   }
 
   protected readonly control = new FormControl('en');
