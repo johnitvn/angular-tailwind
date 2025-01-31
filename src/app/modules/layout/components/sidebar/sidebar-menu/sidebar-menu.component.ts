@@ -10,7 +10,6 @@ import { LayoutService } from '../../../services/layout.service';
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
   styleUrls: ['./sidebar-menu.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
     TuiIcon,
