@@ -1,39 +1,43 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TuiButton, TuiDropdown, TuiFallbackSrcPipe, TuiIcon } from '@taiga-ui/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { TuiButton, TuiDropdown } from '@taiga-ui/core';
 import { LayoutService } from '../../../services/layout.service';
-import { TuiAvatar, TuiBadgedContent, TuiBadgeNotification, TuiSegmented } from '@taiga-ui/kit';
+import { TuiBadgedContent, TuiBadgeNotification } from '@taiga-ui/kit';
 import { TuiObscured, TuiActiveZone } from '@taiga-ui/cdk';
 
 @Component({
   selector: 'app-notification-menu',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TuiButton, TuiDropdown, TuiDropdown, TuiBadgedContent,
+  imports: [
+    CommonModule,
+    TuiButton,
+    TuiDropdown,
+    TuiBadgedContent,
     TuiObscured,
-    TuiActiveZone, TuiBadgeNotification],
+    TuiActiveZone,
+    TuiBadgeNotification,
+  ],  
   template: `
-    <tui-badged-content>
+    <tui-badged-content [style.--tui-radius.%]="100">
       <tui-badge-notification size="s" tuiSlot="top">8</tui-badge-notification>
       <button
         tuiIconButton
-        class="!rounded-full"
+        [style.--tui-radius.%]="100"
         appearance="flat"
         size="m"
         iconStart="@tui.bell"
-        (click)="onClick()"
-        [tuiDropdown]="notification"  
+        (click)="toggleDropdown()"
+        [tuiDropdown]="notification"
         [tuiDropdownMaxHeight]="600"
         [tuiDropdownManual]="open"
         [tuiObscuredEnabled]="open"
-        (tuiActiveZoneChange)="onActiveZone($event)"
-        (tuiObscured)="onObscured($event)"
-        >
+        (tuiActiveZoneChange)="closeDropdownIfInactive($event)"
+        (tuiObscured)="closeDropdownIfObscured($event)">
       </button>
     </tui-badged-content>
+
     <ng-template #notification>
-      <div class="w-screen max-w-md bg-[var(--tui-background-neutral-1)] p-8">
-      Notification
-      </div>
+      <div class="w-screen max-w-md bg-[var(--tui-background-neutral-1)] p-8">Notification</div>
     </ng-template>
   `,
 })
@@ -42,17 +46,15 @@ export class NotificationMenuComponent {
 
   constructor(public layoutService: LayoutService) {}
 
-  protected onClick(): void {
+  protected toggleDropdown(): void {
     this.open = !this.open;
   }
 
-  protected onObscured(obscured: boolean): void {
-    if (obscured) {
-      this.open = false;
-    }
+  protected closeDropdownIfObscured(obscured: boolean): void {
+    if (obscured) this.open = false;
   }
 
-  protected onActiveZone(active: boolean): void {
-    this.open = active && this.open;
+  protected closeDropdownIfInactive(active: boolean): void {
+    if (!active) this.open = false;
   }
 }
