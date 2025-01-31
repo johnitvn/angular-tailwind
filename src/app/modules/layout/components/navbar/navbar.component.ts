@@ -1,21 +1,39 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { TuiButton, TuiDropdown, TuiFallbackSrcPipe, TuiIcon } from '@taiga-ui/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TuiButton } from '@taiga-ui/core';
 import { LayoutService } from '../../services/layout.service';
-import { TuiAvatar, TuiBadgedContent, TuiBadgeNotification , TuiSegmented} from '@taiga-ui/kit';
+import { UserMenuComponent } from './user-menu/user-menu.component';
+import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TuiButton, TuiDropdown, TuiIcon, TuiAvatar, TuiFallbackSrcPipe, TuiSegmented, TuiBadgedContent, TuiBadgeNotification, TuiDropdown]
+  imports: [
+      CommonModule, 
+      TuiButton,    
+      UserMenuComponent,
+      NotificationMenuComponent    
+    ],
+    template: `
+  <div class="flex h-14 items-center border-b bg-[var(--tui-background-base)] px-4">
+    <div class="flex items-center lg:w-64">
+      <div class="flex justify-center">
+        <button tuiIconButton appearance="flat" size="s" class="!flex lg:!hidden !rounded-full" iconStart="@tui.align-justify" (click)="toggleMobileSidebar()">Mobile</button>
+      </div>
+      <div class="hidden lg:flex flex-1 items-center">
+        <b class="text-sm font-bold mr-1">eBizBase</b>
+        <span>Account</span>
+      </div>
+    </div>
+    <div class="flex-1 flex gap-3 justify-end items-center">
+      <app-notification-menu />
+      <app-user-menu />
+    </div>
+  </div>  
+  `
 })
 export class NavbarComponent {
 
-  protected userMenuOpened = false;
-  protected notificationMenuOpened = false;
-  protected themeMenuOpened = false;
 
   constructor(protected layoutService: LayoutService) { }
 
@@ -23,17 +41,8 @@ export class NavbarComponent {
     this.layoutService.toggleMobileSidebar();
   }
 
-  protected toogleNotificatonMenu(): void {
-    this.notificationMenuOpened = !this.notificationMenuOpened;
-  }
+ 
 
-  protected toogleUserMenu(): void {
-    this.userMenuOpened = !this.userMenuOpened;    
-  }
-
-  protected toogleThemeMenu(): void {
-    this.themeMenuOpened = !this.themeMenuOpened;
-  }
-
+ 
 
 }

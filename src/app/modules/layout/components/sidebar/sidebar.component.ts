@@ -7,7 +7,13 @@ import { clsx } from 'clsx';
 @Component({
   selector: 'app-sidebar',
   imports: [CommonModule, SidebarMenuComponent],
-  template: `<app-sidebar-menu></app-sidebar-menu>`,
+  template: `
+  <div class="flex lg:hidden items-center h-14">
+    <b class="text-sm font-bold mr-1">eBizBase</b>
+    <span>Account</span>
+  </div>  
+  <app-sidebar-menu></app-sidebar-menu>  
+`,
 })
 export class SidebarComponent  {
   constructor(public layoutService: LayoutService) {}
@@ -16,11 +22,11 @@ export class SidebarComponent  {
     return clsx(
       'scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-thumb-card scrollbar-thin scrollbar-track-transparent  overflow-auto',
       'transition-all duration-300',
-      'w-64 px-2 md:px-3 lg:px-4',
-      'bg-[var(--tui-background-base)] lg:bg-[var(--tui-background-neutral-1)]',
-      'fixed top-0 h-full -translate-x-full flex-col justify-between lg:relative lg:flex lg:translate-x-0',
+      'w-72 px-2 md:px-3 lg:px-4',
+      'bg-[var(--tui-background-base)]',
+      'fixed left-0 top-0 h-full flex-col justify-between lg:relative lg:flex -translate-x-full lg:translate-x-0',
       {
-        'z-10 !translate-x-0': this.layoutService.mobileSidebar,      
+        '!translate-x-0': this.layoutService.mobileSidebar,      
       }
     );
   }

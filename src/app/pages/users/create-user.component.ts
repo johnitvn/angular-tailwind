@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutService } from '../layout/services/layout.service';
+import { LayoutService } from 'src/app/modules/layout/services/layout.service';
 
 @Component({
     selector: 'app-create-user',

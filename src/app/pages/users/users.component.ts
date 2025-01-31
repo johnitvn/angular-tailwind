@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutService } from '../layout/services/layout.service';
 import { Router } from '@angular/router';
+import { LayoutService } from 'src/app/modules/layout/services/layout.service';
 
 @Component({
   selector: 'app-users',
