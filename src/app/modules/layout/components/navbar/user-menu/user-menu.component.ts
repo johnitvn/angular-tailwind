@@ -83,8 +83,8 @@ const LANGUAGES = [
       <button type="button" class="text-sm text-center" (click)="onChangeColorMode('system')">System</button>
     </tui-segmented>
 
-    <!-- <tui-combo-box
-      class="w-full !rounded-full"
+    <tui-combo-box
+      class="!hidden w-full !rounded-full"
       tuiTextfieldSize="l"
       tuiDropdownMobile
       [tuiTextfieldLabelOutside]="true"
@@ -94,7 +94,7 @@ const LANGUAGES = [
           *tuiDataList
           [itemContent]="stringify | tuiStringifyContent"
           [items]="items | tuiFilterByInput"/>
-    </tui-combo-box> -->
+    </tui-combo-box>
 
  
 

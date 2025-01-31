@@ -26,7 +26,7 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
       </div>
     </div>
     <div class="flex-1 flex gap-3 justify-end items-center">
-      <app-notification-menu />
+      <app-notification-menu class="hidden" />
       <app-user-menu />
     </div>
   </div>  
