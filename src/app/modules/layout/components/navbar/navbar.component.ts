@@ -15,7 +15,7 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
       NotificationMenuComponent    
     ],
     template: `
-  <div class="flex h-14 items-center border-b bg-[var(--tui-background-base)] px-4">
+  <div class="flex h-14 items-center bg-[var(--tui-background-base)] px-4">
     <div class="flex items-center lg:w-64">
       <div class="flex justify-center">
         <button tuiIconButton appearance="flat" size="s" class="!flex lg:!hidden !rounded-full" iconStart="@tui.align-justify" (click)="toggleMobileSidebar()">Mobile</button>

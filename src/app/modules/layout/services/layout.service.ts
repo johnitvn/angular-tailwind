@@ -1,25 +1,54 @@
-import { Injectable, OnDestroy, signal } from '@angular/core';
+import { effect, Inject, inject, Injectable, OnDestroy, signal, WritableSignal } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter, Subscription } from 'rxjs';
+import { filter, Observable, Subscription, tap } from 'rxjs';
 import { MenuItem, SubMenuItem } from '../models/menu.model';
 import { PageInformation } from '../models/page-information.model';
+import { WA_WINDOW } from '@ng-web-apis/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LayoutService implements OnDestroy {
+  private _navigrationEndSubscription = new Subscription();
+  private _systemColorSchemeSubscription = new Subscription();
+
   private _mobileSidebar = signal(false);
   private _information = signal<PageInformation | null>(null);
   private _pagesMenu = signal<MenuItem[]>([]);
-  private _subscription = new Subscription();
+  private _colorMode: WritableSignal<'dark' | 'light' | 'monochrome' | 'system'>;
+  private _isDarkMode = signal<boolean>(false);
+  private _isMonochromeMode = signal<boolean>(false);
 
-  constructor(private router: Router) {
-    let sub = this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
-      this.expandBaseOnActiveRoute();
-      this.scrollMainContentToTop();
-      this._information.set(null);
+  constructor(private router: Router, @Inject(WA_WINDOW) private window: Window) {
+    this._navigrationEndSubscription.add(
+      this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+        this.expandBaseOnActiveRoute();
+        this.scrollMainContentToTop();
+        this._information.set(null);
+      }),
+    );
+
+    // TODO: READ FROM COOKIE
+    this._colorMode = signal('system');
+
+    effect(() => {
+      if (this._colorMode() === 'system') {
+        this._systemColorSchemeSubscription.add(
+          this.isDarkModeObserverable().subscribe((isDarkMode: boolean) => {
+            this._isDarkMode.set(isDarkMode);
+          }),
+        );
+      } else {
+        this._isDarkMode.set(this._colorMode() === 'dark');
+        this._systemColorSchemeSubscription.unsubscribe();
+      }
+      this._isMonochromeMode.set(this._colorMode() === 'monochrome');
+      console.log('ColorMode', {
+        mode: this._colorMode(),
+        darkMode: this._isDarkMode(),
+        monochrome: this._isMonochromeMode(),
+      });
     });
-    this._subscription.add(sub);
   }
 
   get pagesMenu() {
@@ -38,7 +67,6 @@ export class LayoutService implements OnDestroy {
     return this._information();
   }
 
-
   get mobileSidebar() {
     return this._mobileSidebar();
   }
@@ -51,10 +79,22 @@ export class LayoutService implements OnDestroy {
     this._mobileSidebar.set(!this._mobileSidebar());
   }
 
-
   public toggleSubMenu(submenu: SubMenuItem) {
     submenu.expanded = !submenu.expanded;
   }
+
+  public setColorMode(mode: 'dark' | 'light' | 'monochrome' | 'system') {
+    this._colorMode.set(mode);
+  }
+
+  public isDarkMode(){
+    return this._isDarkMode();
+  }
+
+  public isMonochromeMode(){
+    return this._isMonochromeMode();
+  }
+
 
   private scrollMainContentToTop() {
     const mainContent = document.getElementById('main-content');
@@ -62,6 +102,8 @@ export class LayoutService implements OnDestroy {
       mainContent.scrollTop = 0;
     }
   }
+
+ 
 
   private expandBaseOnActiveRoute() {
     this._pagesMenu().forEach((menu) => {
@@ -98,7 +140,33 @@ export class LayoutService implements OnDestroy {
     });
   }
 
+  private isDarkModeObserverable(signal?: AbortSignal): Observable<boolean> {
+    return new Observable<boolean>((subscriber) => {
+      function emitValue(event: Event) {
+        subscriber.next((event as MediaQueryListEvent).matches);
+      }
+
+      const mediaListQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      if (signal) {
+        signal.onabort = () => {
+          mediaListQuery.removeEventListener('change', emitValue);
+          !subscriber.closed && subscriber.complete();
+        };
+      }
+
+      mediaListQuery.addEventListener('change', emitValue);
+      subscriber.next(mediaListQuery.matches);
+
+      return () => {
+        mediaListQuery.removeEventListener('change', emitValue);
+        !subscriber.closed && subscriber.complete();
+      };
+    });
+  }
+
   ngOnDestroy(): void {
-    this._subscription.unsubscribe();
+    this._navigrationEndSubscription.unsubscribe();
+    this._systemColorSchemeSubscription.unsubscribe();
   }
 }

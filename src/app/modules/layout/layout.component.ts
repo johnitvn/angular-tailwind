@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -9,9 +9,9 @@ import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-layout',
-  imports: [NgClass, TuiRoot, RouterOutlet, SidebarComponent, NavbarComponent,  PageTitleComponent],
+  imports: [NgClass, TuiRoot, RouterOutlet, SidebarComponent, NavbarComponent, PageTitleComponent],
   template: `
-  <tui-root tuiTheme="light" class="flex flex-col h-screen w-full overflow-hidden">
+  <tui-root [attr.tuiTheme]="layoutService.isDarkMode()?'dark':'light'" [ngClass]="{'grayscale':layoutService.isMonochromeMode() }" class="flex flex-col h-screen w-full overflow-hidden">
     <app-navbar></app-navbar>
     <div class="flex-1 flex flex-row-reverse grow content-start overflow-hidden h-full">
       <div
@@ -32,12 +32,8 @@ import { NgClass } from '@angular/common';
   <div class="top-0 left-72 w-screen h-screen transition-all duration-750 backdrop-blur-[0px]" [ngClass]="{'!fixed lg:!hidden backdrop-blur-[2px]': layoutService.mobileSidebar}" (click)="layoutService.toggleMobileSidebar()"></div>
   <ng-container ngProjectAs="tuiOverHints" />
   </tui-root>
-`
+`,
 })
 export class LayoutComponent {
-
-  constructor(public layoutService: LayoutService){
-
-  }
- 
+  constructor(public layoutService: LayoutService) {}
 }

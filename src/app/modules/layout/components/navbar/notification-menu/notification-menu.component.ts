@@ -22,6 +22,7 @@ import { TuiObscured, TuiActiveZone } from '@taiga-ui/cdk';
         iconStart="@tui.bell"
         (click)="onClick()"
         [tuiDropdown]="notification"  
+        [tuiDropdownMaxHeight]="600"
         [tuiDropdownManual]="open"
         [tuiObscuredEnabled]="open"
         (tuiActiveZoneChange)="onActiveZone($event)"
