@@ -14,8 +14,10 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
       UserMenuComponent,
       NotificationMenuComponent    
     ],
+    host: {
+      'class': 'flex h-14 w-screen items-center bg-[var(--tui-background-base)] px-4'
+    },
     template: `
-  <div class="flex h-14 items-center bg-[var(--tui-background-base)] px-4">
     <div class="flex items-center lg:w-64">
       <div class="flex justify-center">
         <button tuiIconButton appearance="flat" size="s" class="!flex lg:!hidden !rounded-full" iconStart="@tui.align-justify" (click)="toggleMobileSidebar()">Mobile</button>
@@ -29,7 +31,6 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
       <app-notification-menu class="hidden" />
       <app-user-menu />
     </div>
-  </div>  
   `
 })
 export class NavbarComponent {

@@ -20,13 +20,13 @@ export class SidebarComponent  {
 
   @HostBinding('class') get classes() {
     return clsx(
-      'scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-thumb-card scrollbar-thin scrollbar-track-transparent  overflow-auto',
+      'scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-thumb-card scrollbar-thin scrollbar-track-transparent overflow-auto',
       'transition-all duration-300',
       'w-72 px-2 md:px-3 lg:px-4',
       'bg-[var(--tui-background-base)]',
-      'fixed left-0 top-0 h-full flex-col justify-between lg:relative lg:flex -translate-x-full lg:translate-x-0',
+      'fixed left-0 top-0 h-[calc(100dvh-3.5rem)] flex-col justify-between lg:relative lg:flex -translate-x-full lg:translate-x-0',
       {
-        '!translate-x-0': this.layoutService.mobileSidebar,      
+        '!translate-x-0 h-[calc(100dvh)]': this.layoutService.mobileSidebar,      
       }
     );
   }
