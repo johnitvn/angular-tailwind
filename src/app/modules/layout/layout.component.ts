@@ -20,13 +20,19 @@ import { NgClass } from '@angular/common';
     <div class="flex flex-row-reverse">
       <div
         id="main-content"
-        class="flex-1 h-[calc(100dvh-3.5rem)] overflow-auto bg-[var(--tui-background-neutral-1)] scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-thumb-[var(--tui-background-neutral-2)] scrollbar-thin scrollbar-track-transparent">
+        class="flex-1 h-[calc(100dvh-3.5rem)] overflow-y-auto overflow-x-hidden bg-[var(--tui-background-neutral-1)] scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-thumb-[var(--tui-background-neutral-2)] scrollbar-thin scrollbar-track-transparent scrollbar-corner-rounded-full">
         <div class="mx-auto p-4 sm:p-8">
           <app-page-title />
           <router-outlet></router-outlet>
         </div>
       </div>  
-      <!-- <div class="fixed top-0 bottom-0 w-screen transition-all duration-750 backdrop-blur-[0px] lg:hidden -translate-x-full" [ngClass]="{'translate-x-0 backdrop-blur-[2px]': layoutService.mobileSidebar}" (click)="layoutService.toggleMobileSidebar()"></div> -->
+      <div class="fixed top-0 bottom-0 w-screen transition-all duration-750 backdrop-blur-[0px] lg:hidden -translate-x-full"
+        [ngClass]="{'translate-x-0 backdrop-blur-[2px]': layoutService.mobileSidebar}" 
+        (click)="layoutService.toggleMobileSidebar()"
+        (wheel)="$event.preventDefault()"
+        (touchmove)="$event.preventDefault()"
+        >
+      </div>
       <app-sidebar></app-sidebar>      
     </div>
     
