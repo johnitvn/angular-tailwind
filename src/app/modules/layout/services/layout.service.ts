@@ -13,8 +13,10 @@ export class LayoutService implements OnDestroy {
   private _systemColorSchemeSubscription = new Subscription();
 
   private _mobileSidebar = signal(false);
-  private _information = signal<PageInformation | null>(null);
   private _pagesMenu = signal<MenuItem[]>([]);
+
+  private _information = signal<PageInformation | null>(null);
+  
   private _colorMode: WritableSignal<'dark' | 'light' | 'monochrome' | 'system'>;
   private _isDarkMode = signal<boolean>(false);
   private _isMonochromeMode = signal<boolean>(false);
