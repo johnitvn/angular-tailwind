@@ -35,8 +35,12 @@ export const appRoutes: Routes = [
         loadComponent: () => import('./pages/dashboard.component').then((m) => m.DashboardComponent),
       },
       {
-        path: 'profile',
+        path: 'profile/dashboard',
         loadComponent: () => import('./pages/profiles/dashboard.component').then((m) => m.DashboardComponent),
+      },
+      {
+        path: 'profile/personal-info',
+        loadComponent: () => import('./pages/profiles/personal-info.component').then((m) => m.PersonalInfoComponent),
       },
       {
         path: 'profile/name',

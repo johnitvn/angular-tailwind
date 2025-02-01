@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TuiTextfield } from '@taiga-ui/core';
 import { LayoutService } from 'src/app/modules/layout/services/layout.service';
 

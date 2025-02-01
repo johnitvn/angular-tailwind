@@ -63,8 +63,13 @@ const pages: MenuItem[] = [
       {
         icon: '@tui.layout-dashboard',
         label: 'Home',
-        route: '/profile',
-      },          
+        route: '/profile/dashboard',
+      },   
+      {
+        icon: '@tui.layout-dashboard',
+        label: 'Personal Info',
+        route: '/profile/personal-info',
+      },             
     ],
   },
  
