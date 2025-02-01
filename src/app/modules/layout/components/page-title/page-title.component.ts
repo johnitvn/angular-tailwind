@@ -8,7 +8,7 @@ import { TuiButton, TuiIcon } from '@taiga-ui/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, TuiIcon, TuiButton],
   host: {
-    class: 'py-4 flex justify-between',
+    class: 'pb-4 flex justify-between',
   },
   template: `  
     <div class="inline-block">

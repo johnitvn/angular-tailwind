@@ -21,7 +21,7 @@ import { NgClass } from '@angular/common';
       <div
         id="main-content"
         class="flex-1 h-[calc(100dvh-3.5rem)] overflow-y-auto overflow-x-hidden bg-[var(--tui-background-neutral-1)] scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-thumb-[var(--tui-background-neutral-2)] scrollbar-thin scrollbar-track-transparent scrollbar-corner-rounded-full">
-        <div class="mx-auto p-4 sm:p-8">
+        <div class="mx-auto p-4 sm:p-8 pb-8">
           <app-page-title />
           <router-outlet></router-outlet>
         </div>
