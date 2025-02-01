@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TuiButton, TuiIcon } from '@taiga-ui/core';
+import { TuiButton } from '@taiga-ui/core';
 import { LayoutService } from '../../services/layout.service';
 import { UserMenuComponent } from './user-menu/user-menu.component';
 import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
@@ -8,27 +8,44 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
 @Component({
   selector: 'app-navbar',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TuiButton, UserMenuComponent, NotificationMenuComponent, TuiIcon, TuiButton],
+  imports: [CommonModule, TuiButton, UserMenuComponent, NotificationMenuComponent, TuiButton],
   template: `
-    <div class="flex h-14 w-screen items-center bg-[var(--tui-background-base)] px-2 lg:px-4" [ngClass]="{'justify-between': this.layoutService.pageInformation?.previous}">
-      <div class="flex items-center lg:w-64" [ngClass]="{'hidden lg:flex': this.layoutService.pageInformation?.previous}">
-        <div class="flex justify-center" *ngIf="layoutService.pagesMenu.length > 0">
-          <button tuiIconButton appearance="flat" size="s" class="!flex lg:!hidden !rounded-full" iconStart="@tui.align-justify" (click)="toggleMobileSidebar()">Mobile</button>
-        </div>
-        <div class="hidden lg:flex flex-1 items-center" [ngClass]="{'!flex': layoutService.pagesMenu.length == 0}">
-          <b class="text-sm font-bold mr-1">eBizBase</b>
-          <span>Account</span>
+   <div class="flex h-14 w-screen items-center bg-[var(--tui-background-base)] px-2 lg:px-4" [ngClass]="{'hidden lg:flex': this.layoutService.pageInformation?.previous}">
+      <div class="flex items-center lg:w-64">
+        <!-- Open sidebar (only mobile) -->
+        <button 
+          *ngIf="layoutService.pagesMenu.length > 0" 
+          tuiIconButton 
+          appearance="flat" 
+          size="s" 
+          class="lg:!hidden !rounded-full" 
+          iconStart="@tui.align-justify" 
+          (click)="toggleMobileSidebar()">
+        </button>
+        
+        <div class="flex-1 hidden lg:flex">
+          <!-- logo (only desktop) -->
+          <div class="">
+            <b class="text-sm font-bold mr-1">eBizBase</b>
+            <span>Account</span>
+          </div> 
+          <!-- page title (only-mobile) -->
+          <div class="lg:hidden">
+              {{ layoutService.pageInformation?.pageTitle}}
+          </div>         
         </div>
       </div>
-      <div class="flex-1 flex gap-3 justify-end items-center" [ngClass]="{'hidden lg:flex': this.layoutService.pageInformation?.previous}">
+      <div class="flex flex-1 gap-3 justify-end items-center" [ngClass]="{'hidden lg:flex': this.layoutService.pageInformation?.previous}">
         <app-notification-menu class="hidden" />
         <app-user-menu />
       </div>
+    </div>   
 
+    <div class="hidden h-14 w-screen items-center bg-[var(--tui-background-base)] px-2 lg:px-4 lg:hidden" [ngClass]="{'!flex lg:!hidden': this.layoutService.pageInformation?.previous}">
       <a
-        *ngIf="layoutService.pageInformation?.previous"
+        *ngIf="layoutService.pageInformation?.previous"        
         href="{{layoutService.pageInformation?.previous?.url}}" 
-        class="lg:!hidden"
+        class="lg:!hidden lg:w-0"
         [style.--tui-radius.%]="100"
         role="button"          
         title="Back"
@@ -39,9 +56,9 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
        >
       </a>  
 
-      <h1 class="text-base lg:hidden flex-1">{{layoutService.pageInformation?.pageTitle}}</h1>
+      <h1 class="text-base flex-1">{{layoutService.pageInformation?.pageTitle}}</h1>
       
-      <div class="flex gap-3 lg:hidden" >
+      <div class="flex gap-3" >
         <ng-container *ngIf="layoutService.pageInformation?.actions">
           <button
             *ngFor="let action of layoutService.pageInformation?.actions"
@@ -52,12 +69,11 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
             [iconStart]="action.icon" 
             (click)="action.click && action.click()"
             >
-            <span class="hidden lg:block">{{ action.title }}</span>
           </button>
         </ng-container>   
       </div>
 
-    </div>
+    </div>   
   `,
 })
 export class NavbarComponent {

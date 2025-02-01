@@ -18,7 +18,7 @@ import { TuiButton, TuiIcon } from '@taiga-ui/core';
           <span>{{layoutService.pageInformation?.previous?.title}}</span>
         </a>
       </div>
-      <h3 class="text-lg font-semibold">{{layoutService.pageInformation?.title}}</h3>
+      <h3 class="text-lg font-semibold">{{layoutService.pageInformation?.pageTitle}}</h3>
     </div>
     <div class="inline-flex gap-3" *ngIf="layoutService.pageInformation?.actions">
         <button

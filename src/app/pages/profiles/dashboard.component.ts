@@ -205,7 +205,6 @@ export class DashboardComponent implements OnInit {
   constructor(private layoutService: LayoutService, private router: Router) {
     this.layoutService.pageInformation = {
       title: 'eBizBase Account',
-      pageTitle: 'Home',
       size: 'xxl'
     };
   }
