@@ -12,10 +12,16 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.layoutService.pageInformation = {
-      title: 'Users listing',     
+      title: 'Users listing',  
+      pageTitle: 'Users listing',
+      previous: {
+        title: 'Home',
+        url: '/'
+      },      
       actions: [
         {
           title: 'Create',
+          icon: '@tui.plus',
           click: () => {
             this.router.navigate(['users','create']);
           },

@@ -10,12 +10,12 @@ const pages: MenuItem[] = [
     separator: false,
     items: [
       {
-        icon: 'assets/icons/heroicons/outline/chart-pie.svg',
+        icon: '@tui.layout-dashboard',
         label: 'Dashboard',
         route: '/dashboard',
       },
       {
-        icon: 'assets/icons/heroicons/outline/exclamation-triangle.svg',
+        icon: '@tui.users-round',
         label: 'Users',
         route: '/users',
         children: [
@@ -24,7 +24,7 @@ const pages: MenuItem[] = [
         ],
       },
       {
-        icon: 'assets/icons/heroicons/outline/lock-closed.svg',
+        icon: '@tui.circle-gauge',
         label: 'Mutil levels',
         route: '/level1',
         children: [
@@ -61,15 +61,10 @@ const pages: MenuItem[] = [
     group: 'Profile',
     items: [
       {
-        icon: 'assets/icons/heroicons/outline/download.svg',
-        label: 'Personal Information',
-        route: '/personal-information',
-      },     
-      {
-        icon: 'assets/icons/heroicons/outline/download.svg',
-        label: 'Sessions',
-        route: '/sessions',
-      },    
+        icon: '@tui.layout-dashboard',
+        label: 'Home',
+        route: '/profile',
+      },          
     ],
   },
  

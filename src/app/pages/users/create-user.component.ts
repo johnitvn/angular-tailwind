@@ -12,10 +12,11 @@ export class CreateUserComponent implements OnInit {
   ngOnInit(): void {
     this.layoutService.pageInformation = {
       title: 'Create new user',
+      pageTitle: 'Create new user',
       previous: {
         title: 'Users',
         url: '/users'
-      },     
+      },       
     }
   }
 }

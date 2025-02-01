@@ -23,7 +23,7 @@ import { TuiButton, TuiIcon } from '@taiga-ui/core';
     <div class="inline-flex gap-3" *ngIf="layoutService.pageInformation?.actions">
         <button
           *ngFor="let action of layoutService.pageInformation?.actions"
-          tuiButton size="m" [iconStart]="action.icon??''" (click)="action.click && action.click()">
+          tuiButton size="m" [iconStart]="action.icon" (click)="action.click && action.click()">
           {{ action.title }}
         </button>
       </div>

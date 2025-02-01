@@ -4,6 +4,7 @@ import { filter, Observable, Subscription, tap } from 'rxjs';
 import { MenuItem, SubMenuItem } from '../models/menu.model';
 import { PageInformation } from '../models/page-information.model';
 import { WA_WINDOW } from '@ng-web-apis/common';
+import { Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root',
@@ -14,14 +15,13 @@ export class LayoutService implements OnDestroy {
 
   private _mobileSidebar = signal(false);
   private _pagesMenu = signal<MenuItem[]>([]);
-
   private _information = signal<PageInformation | null>(null);
-  
+
   private _colorMode: WritableSignal<'dark' | 'light' | 'monochrome' | 'system'>;
   private _isDarkMode = signal<boolean>(false);
   private _isMonochromeMode = signal<boolean>(false);
 
-  constructor(private router: Router, @Inject(WA_WINDOW) private window: Window) {
+  constructor(@Inject(WA_WINDOW) private window: Window, private router: Router, private title: Title) {
     this._navigrationEndSubscription.add(
       this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
         this.expandBaseOnActiveRoute();
@@ -63,6 +63,9 @@ export class LayoutService implements OnDestroy {
 
   set pageInformation(info: PageInformation | null) {
     this._information.set(info);
+    if (info && info.title) {
+      this.title.setTitle(info.title);
+    }
   }
 
   get pageInformation() {
@@ -93,14 +96,13 @@ export class LayoutService implements OnDestroy {
     return this._colorMode();
   }
 
-  public isDarkMode(){
+  public isDarkMode() {
     return this._isDarkMode();
   }
 
-  public isMonochromeMode(){
+  public isMonochromeMode() {
     return this._isMonochromeMode();
   }
-
 
   private scrollMainContentToTop() {
     const mainContent = document.getElementById('main-content');
@@ -108,8 +110,6 @@ export class LayoutService implements OnDestroy {
       mainContent.scrollTop = 0;
     }
   }
-
- 
 
   private expandBaseOnActiveRoute() {
     this._pagesMenu().forEach((menu) => {
@@ -152,7 +152,7 @@ export class LayoutService implements OnDestroy {
         subscriber.next((event as MediaQueryListEvent).matches);
       }
 
-      const mediaListQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const mediaListQuery = this.window.matchMedia('(prefers-color-scheme: dark)');
 
       if (signal) {
         signal.onabort = () => {

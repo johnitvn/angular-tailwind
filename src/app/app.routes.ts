@@ -9,17 +9,10 @@ export const appRoutes: Routes = [
         path: 'dashboard',
         loadComponent: () => import('./pages/dashboard.component').then((m) => m.DashboardComponent),
       },
-      {
-        path: 'personal-information',
-        loadComponent: () => import('./pages/profiles/personal-information.component').then((m) => m.PersonalInformationComponent),        
-      },
-      {
-        path: 'sessions',
-        loadComponent: () => import('./pages/profiles/session.component').then((m) => m.SessionComponent),        
-      },
+
       {
         path: 'users',
-        loadComponent: () => import('./pages/users/users.component').then((m) => m.UsersComponent),        
+        loadComponent: () => import('./pages/users/users.component').then((m) => m.UsersComponent),
       },
       {
         path: 'users/create',
@@ -40,7 +33,15 @@ export const appRoutes: Routes = [
       {
         path: 'level1/level2/level3',
         loadComponent: () => import('./pages/dashboard.component').then((m) => m.DashboardComponent),
-      },      
+      },
+      {
+        path: 'profile',
+        loadComponent: () => import('./pages/profiles/dashboard.component').then((m) => m.DashboardComponent),
+      },
+      {
+        path: 'profile/name',
+        loadComponent: () => import('./pages/profiles/name.component').then((m) => m.NameComponent),
+      },
     ],
   },
 ];
