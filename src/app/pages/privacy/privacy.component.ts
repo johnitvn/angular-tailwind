@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TuiIcon, TuiTextfield } from '@taiga-ui/core';
+import { tuiDialog, TuiIcon, TuiTextfield } from '@taiga-ui/core';
 import { TuiAvatar, TuiSwitch } from '@taiga-ui/kit';
 import { LayoutService } from 'src/app/modules/layout/services/layout.service';
 import { PageHeadingComponent } from '../../components/page-heading/page-heading.component';
+import { FeedbackDialog } from 'src/app/components/feedback/feedback-dialog.component';
 
 @Component({
   selector: 'app-privacy',
@@ -64,7 +65,7 @@ import { PageHeadingComponent } from '../../components/page-heading/page-heading
         <div class="text-base lg:flex-1">View help options</div>      
         <tui-icon icon="@tui.chevron-right" />
       </div>      
-      <div class="flex p-4 space-x-2 items-center hover:bg-[var(--tui-background-neutral-1-hover)] border-t border-[var(--tui-background-neutral-1-hover)]">
+      <div (click)="feedbackDialog().subscribe()" class="flex p-4 space-x-2 items-center hover:bg-[var(--tui-background-neutral-1-hover)] border-t border-[var(--tui-background-neutral-1-hover)]">
         <tui-icon icon="@tui.message-square-warning" />
         <div class="text-base lg:flex-1">Send feedback</div>
         <tui-icon icon="@tui.chevron-right" />
@@ -79,12 +80,16 @@ import { PageHeadingComponent } from '../../components/page-heading/page-heading
   </div>
   `,
 })
-export class PrivacyComponent implements OnInit {
-  constructor(private layoutService: LayoutService, private router: Router) {
+export class PrivacyComponent {
+  protected readonly feedbackDialog = tuiDialog(FeedbackDialog, {
+    dismissible: true,
+    label: 'Send feedback to eBizBase',
+  });
+
+  constructor(private layoutService: LayoutService) {
     this.layoutService.info = {
       title: 'Security',
       size: 'm',
     };
   }
-  ngOnInit(): void {}
 }

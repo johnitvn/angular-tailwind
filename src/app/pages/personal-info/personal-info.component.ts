@@ -81,7 +81,7 @@ import { FeedbackDialog } from 'src/app/components/feedback/feedback-dialog.comp
         <div class="text-base lg:flex-1">View help options</div>      
         <tui-icon icon="@tui.chevron-right" />
       </div>      
-      <div (click)="onFeedbackClick()" class="flex p-4 space-x-2 items-center hover:bg-[var(--tui-background-neutral-1-hover)] border-t border-[var(--tui-background-neutral-1-hover)]">
+      <div (click)="feedbackDialog().subscribe()" class="flex p-4 space-x-2 items-center hover:bg-[var(--tui-background-neutral-1-hover)] border-t border-[var(--tui-background-neutral-1-hover)]">
         <tui-icon icon="@tui.message-square-warning" />
         <div class="text-base lg:flex-1">Send feedback</div>
         <tui-icon icon="@tui.chevron-right" />
@@ -92,7 +92,7 @@ import { FeedbackDialog } from 'src/app/components/feedback/feedback-dialog.comp
   `,
 })
 export class PersonalInfoComponent {
-  private readonly feedbackDialog = tuiDialog(FeedbackDialog, {
+  protected readonly feedbackDialog = tuiDialog(FeedbackDialog, {
     dismissible: true,
     label: 'Send feedback to eBizBase',
   });
@@ -102,9 +102,5 @@ export class PersonalInfoComponent {
       title: 'eBizBase Account',
       size: 'm',
     };
-  }
-
-  protected onFeedbackClick(): void {
-    this.feedbackDialog().subscribe();
-  }
+  } 
 }
