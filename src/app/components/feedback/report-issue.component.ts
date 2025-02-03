@@ -7,9 +7,7 @@ import { TuiDialogService } from '@taiga-ui/core';
   selector: 'app-report-issue',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'flex flex-col',
-  },
+  host: {class: 'flex flex-col'},
   template: ` Report an issue `,
 })
 export class ReportIssueDialog {

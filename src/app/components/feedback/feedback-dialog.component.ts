@@ -10,9 +10,7 @@ import { SuggestIdeaDialog } from './suggest-idea-dialog.component';
   selector: 'app-feedback-dialog',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'flex flex-col',
-  },
+  host: {class: 'flex flex-col'},
   template: `
     <button (click)="onReportIssueClick()">Report an issue</button>
     <button (click)="onSuggestIdeaClick()">Suggest an idea</button>

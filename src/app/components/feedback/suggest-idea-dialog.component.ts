@@ -8,9 +8,7 @@ import { injectContext } from '@taiga-ui/polymorpheus';
   selector: 'app-suggest-idea',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'flex flex-col',
-  },
+  host: {class: 'flex flex-col'},
   template: `suggest an idea `,
 })
 export class SuggestIdeaDialog {
