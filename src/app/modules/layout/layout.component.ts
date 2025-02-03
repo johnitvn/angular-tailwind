@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -10,10 +10,9 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-layout',
   imports: [CommonModule, TuiRoot, RouterOutlet, SidebarComponent, NavbarComponent, PageTitleComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
   <tui-root
-    class="flex flex-col h-[calc(100dvh)] overflow-hidden"
+    class="flex flex-col h-[calc(100dvh)] overflow-hidden text-base"
     [attr.tuiTheme]="layoutService.isDarkMode()?'dark':'light'" 
     [ngClass]="{'grayscale':layoutService.isMonochromeMode()}"
     >
@@ -23,22 +22,25 @@ import { CommonModule } from '@angular/common';
         id="main-content"
         class="flex-1 h-[calc(100dvh-3.5rem)] overflow-y-auto overflow-x-hidden bg-[var(--tui-background-neutral-1)] scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-thumb-[var(--tui-background-neutral-2)] scrollbar-thin scrollbar-track-transparent scrollbar-corner-rounded-full">
         <div class="w-full bg-[var(--tui-background-base)] lg:bg-[var(--tui-background-base-alt)]" >
-          <app-page-title class="hidden lg:flex items-center h-full mx-auto px-8 py-8" [ngClass]="{
-            'max-w-2xl': layoutService.pageInformation?.size ==='xs',
-            'max-w-3xl': layoutService.pageInformation?.size ==='s',
-            'max-w-4xl': layoutService.pageInformation?.size ==='m',
-            'max-w-5xl': layoutService.pageInformation?.size ==='l',
-            'max-w-6xl': layoutService.pageInformation?.size ==='xl',
-            'max-w-7xl': layoutService.pageInformation?.size ==='xxl',
+          <app-page-title 
+           *ngIf="layoutService.info?.previous || layoutService.info?.actions || layoutService.info?.heading" 
+            class="hidden lg:flex items-center h-full mx-auto px-8 py-8" 
+            [ngClass]="{
+            'max-w-2xl': layoutService.info?.size ==='xs',
+            'max-w-3xl': layoutService.info?.size ==='s',
+            'max-w-4xl': layoutService.info?.size ==='m',
+            'max-w-5xl': layoutService.info?.size ==='l',
+            'max-w-6xl': layoutService.info?.size ==='xl',
+            'max-w-7xl': layoutService.info?.size ==='xxl',
           }" />
         </div>
         <div class="mx-auto p-4 sm:p-8 pb-8" [ngClass]="{
-            'max-w-2xl': layoutService.pageInformation?.size ==='xs',
-            'max-w-3xl': layoutService.pageInformation?.size ==='s',
-            'max-w-4xl': layoutService.pageInformation?.size ==='m',
-            'max-w-5xl': layoutService.pageInformation?.size ==='l',
-            'max-w-6xl': layoutService.pageInformation?.size ==='xl',
-            'max-w-7xl': layoutService.pageInformation?.size ==='xxl',
+            'max-w-2xl': layoutService.info?.size ==='xs',
+            'max-w-3xl': layoutService.info?.size ==='s',
+            'max-w-4xl': layoutService.info?.size ==='m',
+            'max-w-5xl': layoutService.info?.size ==='l',
+            'max-w-6xl': layoutService.info?.size ==='xl',
+            'max-w-7xl': layoutService.info?.size ==='xxl',
           }">
           <router-outlet></router-outlet>
         </div>
@@ -50,7 +52,7 @@ import { CommonModule } from '@angular/common';
         (touchmove)="$event.preventDefault()"
         >
       </div>
-      <app-sidebar *ngIf="layoutService.pagesMenu.length > 0"></app-sidebar>      
+      <app-sidebar *ngIf="layoutService.menus.length > 0"></app-sidebar>      
     </div>
     
     <ng-container ngProjectAs="tuiOverContent" />

@@ -2,7 +2,7 @@ import { effect, Inject, inject, Injectable, OnDestroy, signal, WritableSignal }
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, Observable, Subscription, tap } from 'rxjs';
 import { MenuItem, SubMenuItem } from '../models/menu.model';
-import { PageInformation } from '../models/page-information.model';
+import { PageInfo } from '../models/page-information.model';
 import { WA_WINDOW } from '@ng-web-apis/common';
 import { Title } from '@angular/platform-browser';
 
@@ -14,8 +14,8 @@ export class LayoutService implements OnDestroy {
   private _systemColorSchemeSubscription = new Subscription();
 
   private _mobileSidebar = signal(false);
-  private _pagesMenu = signal<MenuItem[]>([]);
-  private _information = signal<PageInformation | null>(null);
+  private _menus = signal<MenuItem[]>([]);
+  private _info = signal<PageInfo | null>(null);
 
   private _colorMode: WritableSignal<'dark' | 'light' | 'monochrome' | 'system'>;
   private _isDarkMode = signal<boolean>(false);
@@ -23,11 +23,12 @@ export class LayoutService implements OnDestroy {
 
   constructor(@Inject(WA_WINDOW) private window: Window, private router: Router, private title: Title) {
     this._navigrationEndSubscription.add(
-      this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
-        this.expandBaseOnActiveRoute();
-        this.scrollMainContentToTop();
-        this._information.set(null);
-      }),
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd)) // filter only navigation end
+        .subscribe(() => {
+          this.expandBaseOnActiveRoute();
+          this.scrollMainContentToTop();
+        }),
     );
 
     // TODO: READ FROM COOKIE
@@ -36,9 +37,10 @@ export class LayoutService implements OnDestroy {
     effect(() => {
       if (this._colorMode() === 'system') {
         this._systemColorSchemeSubscription.add(
-          this.isDarkModeObserverable().subscribe((isDarkMode: boolean) => {
-            this._isDarkMode.set(isDarkMode);
-          }),
+          this.isDarkModeObserverable() //
+            .subscribe((isDarkMode: boolean) => {
+              this._isDarkMode.set(isDarkMode);
+            }),
         );
       } else {
         this._isDarkMode.set(this._colorMode() === 'dark');
@@ -53,23 +55,23 @@ export class LayoutService implements OnDestroy {
     });
   }
 
-  get pagesMenu() {
-    return this._pagesMenu();
+  get menus() {
+    return this._menus();
   }
 
-  set pagesMenu(menus: MenuItem[]) {
-    this._pagesMenu.set(menus);
+  set menus(menus: MenuItem[]) {
+    this._menus.set(menus);
   }
 
-  set pageInformation(info: PageInformation | null) {
-    this._information.set(info);
+  set info(info: PageInfo | null) {
+    this._info.set(info);
     if (info && info.title) {
       this.title.setTitle(info.title);
     }
   }
 
-  get pageInformation() {
-    return this._information();
+  get info() {
+    return this._info();
   }
 
   get mobileSidebar() {
@@ -112,7 +114,7 @@ export class LayoutService implements OnDestroy {
   }
 
   private expandBaseOnActiveRoute() {
-    this._pagesMenu().forEach((menu) => {
+    this._menus().forEach((menu) => {
       let activeGroup = false;
       menu.items.forEach((subMenu) => {
         const active = this.isActive(subMenu.route);

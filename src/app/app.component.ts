@@ -61,15 +61,20 @@ const pages: MenuItem[] = [
     group: 'Profile',
     items: [
       {
-        icon: '@tui.layout-dashboard',
-        label: 'Home',
-        route: '/profile/dashboard',
-      },   
-      {
-        icon: '@tui.layout-dashboard',
+        icon: '@tui.id-card',
         label: 'Personal Info',
         route: '/profile/personal-info',
-      },             
+      },     
+      {
+        icon: '@tui.lock-keyhole',
+        label: 'Security',
+        route: '/profile/security',
+      },    
+      {
+        icon: '@tui.lock-keyhole',
+        label: 'Privacy',
+        route: '/profile/privacy',
+      },          
     ],
   },
  
@@ -83,6 +88,6 @@ const pages: MenuItem[] = [
 export class AppComponent {
   constructor(private sidebarService: LayoutService) {
     /** Set dynamic menu */
-    this.sidebarService.pagesMenu = pages;
+    this.sidebarService.menus = pages;
   }
 }

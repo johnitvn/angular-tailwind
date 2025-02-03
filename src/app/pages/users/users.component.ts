@@ -11,9 +11,9 @@ export class UsersComponent implements OnInit {
   constructor(private layoutService: LayoutService, private router: Router) {}
 
   ngOnInit(): void {
-    this.layoutService.pageInformation = {
+    this.layoutService.info = {
       title: 'Users listing',  
-      pageTitle: 'Users listing',
+      heading: 'Users listing',
       previous: {
         title: 'Home',
         url: '/'

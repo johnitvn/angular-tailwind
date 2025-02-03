@@ -9,7 +9,6 @@ export const appRoutes: Routes = [
         path: 'dashboard',
         loadComponent: () => import('./pages/dashboard.component').then((m) => m.DashboardComponent),
       },
-
       {
         path: 'users',
         loadComponent: () => import('./pages/users/users.component').then((m) => m.UsersComponent),
@@ -35,16 +34,26 @@ export const appRoutes: Routes = [
         loadComponent: () => import('./pages/dashboard.component').then((m) => m.DashboardComponent),
       },
       {
-        path: 'profile/dashboard',
-        loadComponent: () => import('./pages/profiles/dashboard.component').then((m) => m.DashboardComponent),
-      },
-      {
         path: 'profile/personal-info',
-        loadComponent: () => import('./pages/profiles/personal-info.component').then((m) => m.PersonalInfoComponent),
+        loadComponent: () =>
+          import('./pages/profiles/personal-info/personal-info.component').then((m) => m.PersonalInfoComponent),
       },
       {
-        path: 'profile/name',
-        loadComponent: () => import('./pages/profiles/name.component').then((m) => m.NameComponent),
+        path: 'profile/personal-info/display-name',
+        loadComponent: () =>
+          import('./pages/profiles/personal-info/display-name.component').then((m) => m.DisplayNameComponent),
+      },
+      {
+        path: 'profile/personal-info/avatar',
+        loadComponent: () => import('./pages/profiles/personal-info/avatar.component').then((m) => m.AvatarComponent),
+      },
+      {
+        path: 'profile/security',
+        loadComponent: () => import('./pages/profiles/security/security.component').then((m) => m.SecurityComponent),
+      },
+      {
+        path: 'profile/privacy',
+        loadComponent: () => import('./pages/profiles/privacy/privacy.component').then((m) => m.PrivacyComponent),
       },
     ],
   },

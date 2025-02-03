@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SidebarSubmenuComponent } from '../sidebar-submenu/sidebar-submenu.component';
 import { RouterLink} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TuiIcon } from '@taiga-ui/core';
-import { SubMenuItem } from 'src/app/modules/layout/models/menu.model';
 import { LayoutService } from '../../../services/layout.service';
 
 @Component({

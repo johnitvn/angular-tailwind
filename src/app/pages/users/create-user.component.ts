@@ -10,9 +10,9 @@ export class CreateUserComponent implements OnInit {
   constructor(private layoutService: LayoutService) {}
 
   ngOnInit(): void {
-    this.layoutService.pageInformation = {
+    this.layoutService.info = {
       title: 'Create new user',
-      pageTitle: 'Create new user',
+      heading: 'Create new user',
       previous: {
         title: 'Users',
         url: '/users'

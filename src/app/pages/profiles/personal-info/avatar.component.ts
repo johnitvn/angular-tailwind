@@ -4,20 +4,19 @@ import { TuiTextfield } from '@taiga-ui/core';
 import { LayoutService } from 'src/app/modules/layout/services/layout.service';
 
 @Component({
-  selector: 'app-name',
+  selector: 'app-avatar',
   imports: [CommonModule, TuiTextfield],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `   
-  `,
+  template: ``,
 })
-export class NameComponent {
+export class AvatarComponent {
   constructor(private layoutService: LayoutService) {
-    this.layoutService.pageInformation = {
-      title: 'Name',
-      pageTitle: 'Name',
+    this.layoutService.info = {
+      title: 'Avatar',
+      heading: 'Avatar',
       previous: {
-        url: '/profile',
-        title: 'Home'
+        url: 'profile/personal-info',
+        title: 'Personal Info'
       }
     };
   }

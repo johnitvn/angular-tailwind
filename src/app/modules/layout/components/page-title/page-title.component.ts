@@ -11,18 +11,18 @@ import { TuiButton, TuiIcon } from '@taiga-ui/core';
     class: 'pb-4 flex justify-between',
   },
   template: `  
-    <div class="inline-block">
-      <div class="space-x-1 text-xs font-medium" *ngIf="layoutService.pageInformation?.previous">        
-        <a href="{{layoutService.pageInformation?.previous?.url}}" class="flex items-center">
+    <div class="inline-block" >
+      <div class="space-x-1 text-xs font-medium" *ngIf="layoutService.info?.previous">        
+        <a href="{{layoutService.info?.previous?.url}}" class="flex items-center">
           <tui-icon class="!text-sm" icon="@tui.chevron-left" />
-          <span>{{layoutService.pageInformation?.previous?.title}}</span>
+          <span>{{layoutService.info?.previous?.title}}</span>
         </a>
       </div>
-      <h3 class="text-lg font-semibold">{{layoutService.pageInformation?.pageTitle}}</h3>
+      <h3 class="text-lg font-semibold">{{layoutService.info?.heading}}</h3>
     </div>
-    <div class="inline-flex gap-3" *ngIf="layoutService.pageInformation?.actions">
+    <div class="inline-flex gap-3" *ngIf="layoutService.info?.actions">
         <button
-          *ngFor="let action of layoutService.pageInformation?.actions"
+          *ngFor="let action of layoutService.info?.actions"
           tuiButton size="m" [iconStart]="action.icon" (click)="action.click && action.click()">
           {{ action.title }}
         </button>
