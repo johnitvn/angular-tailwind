@@ -15,7 +15,7 @@ export class AvatarComponent {
       title: 'Avatar',
       heading: 'Avatar',
       previous: {
-        url: 'profile/personal-info',
+        url: './',
         title: 'Personal Info'
       }
     };

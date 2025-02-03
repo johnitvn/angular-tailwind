@@ -46,7 +46,7 @@ import { CommonModule } from '@angular/common';
         </div>
       </div>  
       <div class="fixed top-0 bottom-0 w-screen transition-all duration-750 backdrop-blur-[0px] lg:hidden -translate-x-full"
-        [ngClass]="{'translate-x-0 backdrop-blur-[2px]': layoutService.mobileSidebar}" 
+        [ngClass]="{'translate-x-0 backdrop-blur-[2px]': layoutService.mobileSidebarOpened}" 
         (click)="layoutService.toggleMobileSidebar()"
         (wheel)="$event.preventDefault()"
         (touchmove)="$event.preventDefault()"

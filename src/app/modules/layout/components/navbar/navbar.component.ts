@@ -1,14 +1,15 @@
-import { CommonModule } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TuiButton } from '@taiga-ui/core';
 import { LayoutService } from '../../services/layout.service';
 import { UserMenuComponent } from './user-menu/user-menu.component';
 import { NotificationMenuComponent } from './notification-menu/notification-menu.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TuiButton, UserMenuComponent, NotificationMenuComponent, TuiButton],
+  imports: [NgClass, NgIf, RouterLink, TuiButton, UserMenuComponent, NotificationMenuComponent],
   template: `
    <div class="flex h-14 w-screen items-center bg-[var(--tui-background-base)] px-2 lg:px-4" 
    [ngClass]="{'hidden lg:flex': this.layoutService.info?.previous}"
@@ -46,7 +47,7 @@ import { NotificationMenuComponent } from './notification-menu/notification-menu
     <div class="hidden h-14 w-screen items-center bg-[var(--tui-background-base)] px-2 lg:px-4 lg:hidden" [ngClass]="{'!flex lg:!hidden': this.layoutService.info?.previous}">
       <a
         *ngIf="layoutService.info?.previous"        
-        href="{{layoutService.info?.previous?.url}}" 
+        routerLink="{{layoutService.info?.previous?.url}}" 
         class="lg:!hidden lg:w-0"
         [style.--tui-radius.%]="100"
         role="button"          

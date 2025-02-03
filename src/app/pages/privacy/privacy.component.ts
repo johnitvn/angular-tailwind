@@ -4,17 +4,15 @@ import { Router } from '@angular/router';
 import { TuiIcon, TuiTextfield } from '@taiga-ui/core';
 import { TuiAvatar, TuiSwitch } from '@taiga-ui/kit';
 import { LayoutService } from 'src/app/modules/layout/services/layout.service';
+import { PageHeadingComponent } from '../../components/page-heading/page-heading.component';
 
 @Component({
   selector: 'app-privacy',
-  imports: [CommonModule, TuiTextfield, TuiAvatar, TuiIcon, TuiSwitch],
+  imports: [CommonModule, TuiTextfield, TuiAvatar, TuiIcon, TuiSwitch, PageHeadingComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: ` 
-  
-  <div class="flex flex-col items-center pb-10">
-    <div class="text-3xl mt-4">Privacy</div>
-    <div class="text-center mt-4">Key privacy options to help you choose the data saved in your accoun and more</div>
-  </div>     
+  <app-page-heading title="Privacy" subtitle="Key privacy options to help you choose the data saved in your accoun and more" />   
+
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 

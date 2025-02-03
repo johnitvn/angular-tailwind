@@ -1,19 +1,19 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { TuiFallbackSrcPipe, TuiIcon, TuiLink, TuiTextfield } from '@taiga-ui/core';
+import { RouterLink } from '@angular/router';
+import { tuiDialog, TuiFallbackSrcPipe, TuiIcon, TuiTextfield } from '@taiga-ui/core';
 import { TuiAvatar } from '@taiga-ui/kit';
 import { LayoutService } from 'src/app/modules/layout/services/layout.service';
+import { PageHeadingComponent } from '../../components/page-heading/page-heading.component';
+import { FeedbackDialog } from 'src/app/components/feedback/feedback-dialog.component';
+
 
 @Component({
   selector: 'app-personal-info',
-  imports: [CommonModule, TuiTextfield, TuiAvatar, TuiIcon, TuiFallbackSrcPipe],
+  imports: [AsyncPipe, RouterLink, TuiTextfield, TuiAvatar, TuiIcon, TuiFallbackSrcPipe, PageHeadingComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `  
-  <div class="flex flex-col items-center pb-10">
-  <div class="text-3xl mt-4">Personal info</div>
-  <div class="text-center mt-4">Info about you and your preferences across eBizBase services</div>
-  </div>     
+  <app-page-heading title="Personal info" subtitle="Info about you and your preferences across eBizBase services" />   
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
@@ -24,7 +24,7 @@ import { LayoutService } from 'src/app/modules/layout/services/layout.service';
         <h3 class="text-[var(--tui-text-secondary)]">visible to others so they can reach you easily</h3>
       </div>
       <!-- Profile Image -->
-      <a href="/profile/personal-info/avatar" class="flex p-4 space-x-2 items-center hover:bg-[var(--tui-background-neutral-1-hover)]">
+      <a routerLink="avatar" class="flex p-4 space-x-2 items-center hover:bg-[var(--tui-background-neutral-1-hover)]">
         <div class="flex flex-col flex-1 lg:flex-row w-full lg:items-center">
           <div class="font-medium lg:flex-1 text-[var(--tui-text-secondary)] max-w-60">Profile Picture</div>
           <div class="flex lg:flex-1 space-x-1">A profile picture helps personalize your account</div>
@@ -37,7 +37,7 @@ import { LayoutService } from 'src/app/modules/layout/services/layout.service';
         </div>
       </a>
       <!-- Display name --> 
-      <a href="/profile/personal-info/display-name" class="flex p-4 space-x-2 items-center hover:bg-[var(--tui-background-neutral-1-hover)] border-t rounded-b-lg border-[var(--tui-background-neutral-1-hover)]">
+      <a routerLink="display-name" class="flex p-4 space-x-2 items-center hover:bg-[var(--tui-background-neutral-1-hover)] border-t rounded-b-lg border-[var(--tui-background-neutral-1-hover)]">
         <div class="flex flex-col flex-1 lg:flex-row w-full lg:items-center">
           <div class="font-medium lg:flex-1 text-[var(--tui-text-secondary)] max-w-60">Display Name</div>
           <div class="text-base flex lg:flex-1 space-x-1 items-center">John Martin</div>
@@ -51,7 +51,7 @@ import { LayoutService } from 'src/app/modules/layout/services/layout.service';
         <h2 class="text-lg">General preferences for the web</h2>
         <h3 class="text-[var(--tui-text-secondary)]">Manage settings for eBizBase products and services</h3>
       </div>
-      <div class="flex p-4 space-x-2 items-center hover:bg-[var(--tui-background-neutral-1-hover)]">
+      <a routerLink="color-mode" class="flex p-4 space-x-2 items-center hover:bg-[var(--tui-background-neutral-1-hover)]">
         <tui-icon icon="@tui.blend" />
         <div class="flex flex-col flex-1 lg:flex-row w-full lg:items-center">
           <div class="font-medium lg:flex-1 text-[var(--tui-text-secondary)]">Color Mode</div>
@@ -60,15 +60,15 @@ import { LayoutService } from 'src/app/modules/layout/services/layout.service';
           </div>
         </div>
         <tui-icon icon="@tui.chevron-right" />
-      </div>
-      <div class="flex p-4 space-x-2 items-center hover:bg-[var(--tui-background-neutral-1-hover)] border-t rounded-b-lg border-[var(--tui-background-neutral-1-hover)]">
+      </a>
+      <a routerLink="language" class="flex p-4 space-x-2 items-center hover:bg-[var(--tui-background-neutral-1-hover)] border-t rounded-b-lg border-[var(--tui-background-neutral-1-hover)]">
         <tui-icon icon="@tui.languages" />
         <div class="flex flex-col flex-1 lg:flex-row w-full lg:items-center">
         <div class="font-medium lg:flex-1 text-[var(--tui-text-secondary)]">Language</div>
         <div class="flex lg:flex-1 space-x-1 items-center">English</div>
         </div>
         <tui-icon icon="@tui.chevron-right" />
-      </div>                      
+      </a>                      
     </div>
 
     <!-- Others -->
@@ -81,7 +81,7 @@ import { LayoutService } from 'src/app/modules/layout/services/layout.service';
         <div class="text-base lg:flex-1">View help options</div>      
         <tui-icon icon="@tui.chevron-right" />
       </div>      
-      <div class="flex p-4 space-x-2 items-center hover:bg-[var(--tui-background-neutral-1-hover)] border-t border-[var(--tui-background-neutral-1-hover)]">
+      <div (click)="onFeedbackClick()" class="flex p-4 space-x-2 items-center hover:bg-[var(--tui-background-neutral-1-hover)] border-t border-[var(--tui-background-neutral-1-hover)]">
         <tui-icon icon="@tui.message-square-warning" />
         <div class="text-base lg:flex-1">Send feedback</div>
         <tui-icon icon="@tui.chevron-right" />
@@ -91,13 +91,20 @@ import { LayoutService } from 'src/app/modules/layout/services/layout.service';
   </div>
   `,
 })
-export class PersonalInfoComponent implements OnInit {
-  constructor(private layoutService: LayoutService, private router: Router) {
+export class PersonalInfoComponent {
+  private readonly feedbackDialog = tuiDialog(FeedbackDialog, {
+    dismissible: true,
+    label: 'Send feedback to eBizBase',
+  });
+
+  constructor(private layoutService: LayoutService) {
     this.layoutService.info = {
       title: 'eBizBase Account',
       size: 'm',
     };
   }
 
-  ngOnInit(): void {}
+  protected onFeedbackClick(): void {
+    this.feedbackDialog().subscribe();
+  }
 }

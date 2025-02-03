@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { SidebarMenuComponent } from './sidebar-menu/sidebar-menu.component';
 import { CommonModule } from '@angular/common';
 import { LayoutService } from '../../services/layout.service';
@@ -24,9 +24,9 @@ export class SidebarComponent  {
       'transition-all duration-300',
       'w-72 px-2 md:px-3 lg:px-4',
       'bg-[var(--tui-background-base)]',
-      'fixed left-0 top-0 h-[calc(100dvh-3.5rem)] flex-col justify-between lg:relative lg:flex -translate-x-full lg:translate-x-0',
+      'fixed left-0 top-0 h-screen lg:h-[calc(100dvh-3.5rem)] flex-col justify-between lg:relative lg:flex -translate-x-full lg:translate-x-0',
       {
-        '!translate-x-0 h-[calc(100dvh)]': this.layoutService.mobileSidebar,      
+        '!translate-x-0 h-[calc(100dvh)]': this.layoutService.mobileSidebarOpened,      
       }
     );
   }

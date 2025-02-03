@@ -4,19 +4,19 @@ import { TuiTextfield } from '@taiga-ui/core';
 import { LayoutService } from 'src/app/modules/layout/services/layout.service';
 
 @Component({
-  selector: 'app-display-name',
+  selector: 'app-color-mode',
   imports: [CommonModule, TuiTextfield],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `   
   `,
 })
-export class DisplayNameComponent {
+export class ColorModeComponent {
   constructor(private layoutService: LayoutService) {
     this.layoutService.info = {
-      title: 'Display Name',
-      heading: 'Display Name',
+      title: 'Color Mode',
+      heading: 'Color Mode',
       previous: {
-        url: 'profile/personal-info',
+        url: './',
         title: 'Personal Info'
       }
     };

@@ -5,21 +5,15 @@ import { TuiFallbackSrcPipe, TuiIcon, TuiLink, TuiTextfield } from '@taiga-ui/co
 import { TuiAvatar } from '@taiga-ui/kit';
 import { TuiCell } from '@taiga-ui/layout';
 import { LayoutService } from 'src/app/modules/layout/services/layout.service';
+import { PageHeadingComponent } from '../../components/page-heading/page-heading.component';
 
 @Component({
   selector: 'app-security',
-  imports: [CommonModule, TuiTextfield, TuiAvatar, TuiIcon, TuiCell, TuiLink],
+  imports: [CommonModule, TuiTextfield, TuiAvatar, TuiIcon, TuiCell, TuiLink, PageHeadingComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: ` 
-  
-  <div class="flex flex-col items-center pb-10">
-      <div class="text-3xl mt-4">Security</div>
-      <div class="text-center mt-4">Settings options to keep your account secure</div>
-  </div>     
-
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
-  
+  <app-page-heading title="Security" subtitle="Settings options to keep your account secure" />   
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6"> 
 
      <!-- Recent Security Activity -->
     <div class="flex flex-col bg-[var(--tui-background-base)] lg:col-span-2 rounded-lg border border-[var(--tui-background-neutral-1-hover)] [&>:not]">

@@ -1,19 +1,20 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { LayoutService } from '../../services/layout.service';
 import { TuiButton, TuiIcon } from '@taiga-ui/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-page-title',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TuiIcon, TuiButton],
+  imports: [RouterLink, NgIf, TuiIcon, TuiButton],
   host: {
     class: 'pb-4 flex justify-between',
   },
   template: `  
     <div class="inline-block" >
       <div class="space-x-1 text-xs font-medium" *ngIf="layoutService.info?.previous">        
-        <a href="{{layoutService.info?.previous?.url}}" class="flex items-center">
+        <a routerLink="{{layoutService.info?.previous?.url}}" class="flex items-center">
           <tui-icon class="!text-sm" icon="@tui.chevron-left" />
           <span>{{layoutService.info?.previous?.title}}</span>
         </a>
